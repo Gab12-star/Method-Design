@@ -33,34 +33,32 @@
             <span class="brand-text">METHOD DESIGNS</span>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="#home">Home</a>
-    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="#about">About</a>
-    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="#services">Services</a>
-    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="#portfolio">Portfolio</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="#contact">Contact</a>
-    </li>
-
-</ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -116,8 +114,7 @@
 
             <div class="col-lg-6">
                 <div class="image-card large-image">
-                    <div class="placeholder-image">
-                    </div>
+                    <div class="placeholder-image"></div>
                 </div>
             </div>
         </div>
@@ -166,223 +163,244 @@
 
 <section id="portfolio" class="section-pad portfolio-section reveal">
     <div class="container">
-
         <div class="text-center mb-5">
             <div class="section-label">Portfolio</div>
             <h2 class="section-title">Selected Work</h2>
+            <p class="section-text">
+                A collection of projects designed with clean lines, premium finishes, and thoughtful craftsmanship.
+            </p>
         </div>
 
-        <div class="row g-4">
-
-            <!-- Existing -->
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-1"></div>
-                    <div class="portfolio-body">
-                        <h4>Modern Residence</h4>
-                        <p>Warm neutrals and clean geometry.</p>
+        <div class="portfolio-grid">
+            <article class="project-card" data-project="modern-tropical">
+                <div class="project-image">
+                    <img src="images/Modern Tropical/Modern Tropical.jpg" alt="Modern Tropical">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Residential</div>
+                    <h3>Modern Tropical</h3>
+                    <p>Warm tropical interiors with natural wood finishes and contemporary elegance.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-2"></div>
-                    <div class="portfolio-body">
-                        <h4>Luxury Bedroom</h4>
-                        <p>Soft tones with a premium finish.</p>
+            <article class="project-card" data-project="modern-luxury-style">
+                <div class="project-image">
+                    <img src="images/Modern Luxury Style/Modern Luxury Style.jpg" alt="Modern Luxury Style">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Residential</div>
+                    <h3>Modern Luxury Style</h3>
+                    <p>Sophisticated interiors featuring premium finishes and timeless luxury.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-3"></div>
-                    <div class="portfolio-body">
-                        <h4>Dining Concept</h4>
-                        <p>Balanced textures and elegant light.</p>
+            <article class="project-card" data-project="master-bedroom">
+                <div class="project-image">
+                    <img src="images/Master Bedroom/Master Bedroom.jpg" alt="Master Bedroom">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Bedroom</div>
+                    <h3>Master Bedroom</h3>
+                    <p>Comfortable and elegant bedroom designed for relaxation.</p>
+                </div>
+            </article>
 
-            <!-- New -->
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-4"></div>
-                    <div class="portfolio-body">
-                        <h4>Modern Kitchen</h4>
-                        <p>Minimalist cabinetry with premium finishes and warm ambient lighting.</p>
+            <article class="project-card" data-project="rustic-industrial-look">
+                <div class="project-image">
+                    <img src="images/Rustic-Industrial look/Rustic-Industrial look.jpg" alt="Rustic-Industrial look">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Interior Design</div>
+                    <h3>Rustic-Industrial look</h3>
+                    <p>A blend of industrial textures and warm rustic materials.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-5"></div>
-                    <div class="portfolio-body">
-                        <h4>Master Bedroom</h4>
-                        <p>Elegant wood accents with a luxurious contemporary atmosphere.</p>
+            <article class="project-card" data-project="our-first-condo-project">
+                <div class="project-image">
+                    <img src="images/Our first condo project/Our first condo project.jpg" alt="Our first condo project">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Condo</div>
+                    <h3>Our first condo project</h3>
+                    <p>Modern condominium interior designed for comfort and functionality.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-6"></div>
-                    <div class="portfolio-body">
-                        <h4>Walk-in Closet</h4>
-                        <p>Custom glass wardrobes featuring integrated LED lighting.</p>
+            <article class="project-card" data-project="luxury-and-ease-in-the-heart-of-the-metro">
+                <div class="project-image">
+                    <img src="images/Luxury and ease in the heart of the Metro/Luxury and ease in the heart of the Metro.jpg" alt="Luxury and ease in the heart of the Metro">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Residential</div>
+                    <h3>Luxury and ease in the heart of the Metro</h3>
+                    <p>Contemporary urban living with luxurious interior details.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-7"></div>
-                    <div class="portfolio-body">
-                        <h4>Luxury Living Area</h4>
-                        <p>Spacious open-concept living space featuring double-height ceilings, natural light, and elegant finishes.</p>
+            <article class="project-card" data-project="luxury-retreat">
+                <div class="project-image">
+                    <img src="images/Luxury Retreat/Luxury Retreat.jpg" alt="Luxury Retreat">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Residential</div>
+                    <h3>Luxury Retreat</h3>
+                    <p>A relaxing residential space inspired by modern luxury living.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-8"></div>
-                    <div class="portfolio-body">
-                        <h4>Modern Living Room</h4>
-                        <p>Custom glass wardrobes featuring integrated LED lighting.</p>
+            <article class="project-card" data-project="modern-contemporary-look">
+                <div class="project-image">
+                    <img src="images/Modern contemporary look/Modern contemporary look.jpg" alt="Modern contemporary look">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Residential</div>
+                    <h3>Modern contemporary look</h3>
+                    <p>Clean architectural lines paired with refined modern interiors.</p>
+                </div>
+            </article>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-card">
-                    <div class="portfolio-thumb thumb-9"></div>
-                    <div class="portfolio-body">
-                        <h4>Luxury Residential Interior</h4>
-                        <p>Elegant residential design featuring spacious layouts, custom detailing, and contemporary luxury finishes.</p>
+            <article class="project-card" data-project="modern-balinese-resort">
+                <div class="project-image">
+                    <img src="images/Modern Balinese Resort/Modern Balinese Resort.jpg" alt="Modern Balinese Resort">
+                    <div class="project-overlay">
+                        <span>View Project</span>
                     </div>
                 </div>
-            </div>
+                <div class="project-info">
+                    <div class="project-category">Resort</div>
+                    <h3>Modern Balinese Resort</h3>
+                    <p>Resort-inspired living with tropical warmth and natural textures.</p>
+                </div>
+            </article>
 
+            <article class="project-card" data-project="custom-modular-cabinets">
+                <div class="project-image">
+                    <img src="images/Custom Modular Cabinets/Custom Modular Cabinets.jpg" alt="Custom Modular Cabinets">
+                    <div class="project-overlay">
+                        <span>View Project</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">Kitchen</div>
+                    <h3>Custom Modular Cabinets</h3>
+                    <p>Custom-built cabinetry designed for style, storage, and everyday functionality.</p>
+                </div>
+            </article>
         </div>
     </div>
 </section>
 
+<!-- Gallery Modal Placeholder -->
+<div class="gallery-modal" id="galleryModal" aria-hidden="true">
+    <div class="gallery-overlay"></div>
+
+    <div class="gallery-box">
+        <button class="gallery-close" type="button" aria-label="Close gallery">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="gallery-left">
+            <img id="galleryMainImage" src="" alt="">
+        </div>
+
+        <div class="gallery-right">
+            <span id="galleryCategory">Residential</span>
+            <h2 id="galleryTitle">Project Title</h2>
+            <p id="galleryDescription">Project description goes here.</p>
+
+            <div id="galleryThumbs"></div>
+        </div>
+    </div>
+</div>
+
 <section id="contact" class="section-pad contact-section reveal">
-
     <div class="container">
-
         <div class="text-center mb-5">
+            <div class="section-label">CONTACT</div>
 
-            <div class="section-label">
-                CONTACT
-            </div>
-
-            <h2 class="section-title">
-                Let's Build Something Beautiful.
-            </h2>
+            <h2 class="section-title">Let's Build Something Beautiful.</h2>
 
             <p class="section-text">
                 We'd love to hear about your next residential or commercial project.
             </p>
-
         </div>
 
         <div class="row justify-content-center">
-
             <div class="col-lg-8">
-
                 <div class="contact-card">
-
                     <div class="row text-center">
-
-                        <!-- Location -->
-
                         <div class="col-md-6 col-lg-3 mb-4">
-
                             <i class="fa-solid fa-location-dot fa-2x mb-3"></i>
-
                             <h5>Location</h5>
-
-                            <p>Manila, Philippines </p>
-
+                            <p>Manila, Philippines</p>
                         </div>
 
-                        <!-- Phone -->
-
                         <div class="col-md-6 col-lg-3 mb-4">
-
                             <i class="fa-solid fa-phone fa-2x mb-3"></i>
-
                             <h5>Phone</h5>
-
                             <p>+63 915 794 4371</p>
-
                         </div>
 
-                        <!-- Email -->
-
                         <div class="col-md-6 col-lg-3 mb-4">
-
                             <i class="fa-solid fa-envelope fa-2x mb-3"></i>
-
                             <h5>Email</h5>
-
                             <p>
                                 <a href="mailto:methoddesignsph@gmail.com">
                                     methoddesignsph@gmail.com
                                 </a>
                             </p>
-
                         </div>
 
-                        <!-- Social Media -->
-
                         <div class="col-md-6 col-lg-3 mb-4">
-
                             <i class="fa-solid fa-share-nodes fa-2x mb-3"></i>
-
                             <h5>Follow Us</h5>
 
                             <p class="mb-2">
-
-                                <a href="https://www.facebook.com/methoddesignsPH"
-                                   target="_blank">
-
+                                <a href="https://www.facebook.com/methoddesignsPH" target="_blank" rel="noopener">
                                     <i class="fa-brands fa-facebook"></i>
                                     Facebook
-
                                 </a>
-
                             </p>
 
                             <p>
-
-                                <a href="https://www.instagram.com/methoddesignsph?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                                   target="_blank">
-
+                                <a href="https://www.instagram.com/methoddesignsph?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
                                     <i class="fa-brands fa-instagram"></i>
                                     Instagram
-
                                 </a>
-
                             </p>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
+
 <footer class="footer">
     <div class="container">
         <p>© 2019 Method Designs. All Rights Reserved.</p>
