@@ -1,147 +1,66 @@
-// ===============================
-// Navbar Shadow on Scroll
-// ===============================
+// ===========================
+// Navbar Shadow
+// ===========================
 
-window.addEventListener("scroll", function () {
-    const navbar = document.querySelector(".navbar");
+const navbar = document.querySelector(".site-nav");
+
+window.addEventListener("scroll", () => {
 
     if (window.scrollY > 50) {
         navbar.classList.add("shadow");
     } else {
         navbar.classList.remove("shadow");
     }
+
 });
 
-// ===============================
-// Fade-in Animation
-// ===============================
+// ===========================
+// Scroll Reveal Animation
+// ===========================
 
 const observer = new IntersectionObserver((entries) => {
+
     entries.forEach((entry) => {
+
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
         }
+
     });
+
 }, {
     threshold: 0.15
 });
 
-document.querySelectorAll("section").forEach((section) => {
-    section.classList.add("hidden");
-    observer.observe(section);
-});
-
-// ===============================
-// Back To Top Button
-// ===============================
-
-const topButton = document.createElement("button");
-topButton.innerHTML = "&uarr;";
-topButton.className = "top-btn";
-
-document.body.appendChild(topButton);
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 400) {
-        topButton.classList.add("active");
-    } else {
-        topButton.classList.remove("active");
-    }
-});
-
-topButton.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+document.querySelectorAll(".reveal").forEach((el) => {
+    observer.observe(el);
 });
 
 // ===========================
-// Back To Top
+// Back To Top Button
 // ===========================
 
 const topButton = document.querySelector(".top-btn");
 
 window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 400){
-
+    if (window.scrollY > 400) {
         topButton.classList.add("active");
-
-    }else{
-
+    } else {
         topButton.classList.remove("active");
-
     }
 
 });
 
-topButton.addEventListener("click",()=>{
+topButton.addEventListener("click", () => {
 
     window.scrollTo({
 
-        top:0,
+        top: 0,
 
-        behavior:"smooth"
-
-    });
-
-});
-
-// ===========================
-// Scroll Animation
-// ===========================
-
-const observer = new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
+        behavior: "smooth"
 
     });
 
 });
 
-document.querySelectorAll(".reveal").forEach(el=>{
-
-    observer.observe(el);
-
-});
-
-// ===========================
-// DARK MODE
-// ===========================
-
-const toggle = document.getElementById("theme-toggle");
-
-if(localStorage.getItem("theme")==="dark"){
-
-    document.body.classList.add("dark-mode");
-
-    toggle.innerHTML="☀️";
-
-}
-
-toggle.addEventListener("click",()=>{
-
-    document.body.classList.toggle("dark-mode");
-
-    if(document.body.classList.contains("dark-mode")){
-
-        toggle.innerHTML="☀️";
-
-        localStorage.setItem("theme","dark");
-
-    }else{
-
-        toggle.innerHTML="🌙";
-
-        localStorage.setItem("theme","light");
-
-    }
-
-});
