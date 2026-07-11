@@ -153,7 +153,7 @@ const projects = {
 },
 
     "our-first-condo-project": {
-    title: "Our first condo project",
+    title: "Our First Condo Project",
     category: "Condo",
     description: "Modern condominium interior designed for comfort and functionality.",
     images: [
@@ -194,7 +194,7 @@ const projects = {
     },
 
     "modern-contemporary-look": {
-        title: "Modern contemporary look",
+        title: "Modern Contemporary Look",
         category: "Residential",
         description: "Clean architectural lines paired with refined modern interiors.",
         images:[
