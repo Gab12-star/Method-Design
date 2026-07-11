@@ -288,6 +288,18 @@ img{
     min-height: 320px;
 }
 
+.thumb-7{
+    background: url("../images/living-area.jpg") center center/cover no-repeat;
+}
+
+.thumb-8{
+    background: url("../images/living-room.jpg") center center/cover no-repeat;
+}
+
+.thumb-9{
+    background: url("../images/residential-interior.jpg") center center/cover no-repeat;
+}
+
 .portfolio-body{
     padding:22px;
 }
