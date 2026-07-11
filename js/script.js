@@ -56,6 +56,96 @@ topButton.addEventListener("click", () => {
     });
 });
 
+// ===========================
+// Back To Top
+// ===========================
+
+const topButton = document.querySelector(".top-btn");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 400){
+
+        topButton.classList.add("active");
+
+    }else{
+
+        topButton.classList.remove("active");
+
+    }
+
+});
+
+topButton.addEventListener("click",()=>{
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+// ===========================
+// Scroll Animation
+// ===========================
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+});
+
+document.querySelectorAll(".reveal").forEach(el=>{
+
+    observer.observe(el);
+
+});
+
+// ===========================
+// DARK MODE
+// ===========================
+
+const toggle = document.getElementById("theme-toggle");
+
+if(localStorage.getItem("theme")==="dark"){
+
+    document.body.classList.add("dark-mode");
+
+    toggle.innerHTML="☀️";
+
+}
+
+toggle.addEventListener("click",()=>{
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+
+        toggle.innerHTML="☀️";
+
+        localStorage.setItem("theme","dark");
+
+    }else{
+
+        toggle.innerHTML="🌙";
+
+        localStorage.setItem("theme","light");
+
+    }
+
+});
+
 // =========================
 // DARK MODE
 // =========================
