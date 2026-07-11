@@ -220,7 +220,7 @@ const projects = {
 ]
     },
 
-    "custom-modular-cabinets": {
+    "Custom Modular Cabinets": {
         title: "Custom Modular Cabinets",
         category: "Kitchen",
         description: "Custom-built cabinetry designed for style, storage, and everyday functionality.",
