@@ -475,58 +475,91 @@ img{
    DARK MODE
 =========================== */
 
+body.dark-mode{
+    background:#121212;
+    color:#ffffff;
+    transition:0.4s ease;
+}
+
+/* Navbar */
+
+body.dark-mode .site-nav{
+    background:#181818;
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .brand-text{
+    color:#fff !important;
+}
+
+/* Sections */
+
+body.dark-mode .about-section,
+body.dark-mode .portfolio-section{
+    background:#181818;
+}
+
+body.dark-mode .services-section{
+    background:#202020;
+}
+
+body.dark-mode .contact-section{
+    background:#111;
+}
+
+/* Cards */
+
+body.dark-mode .service-card,
+body.dark-mode .portfolio-card,
+body.dark-mode .stat-box{
+    background:#2a2a2a;
+    border-color:#3b3b3b;
+    color:#fff;
+}
+
+/* Text */
+
+body.dark-mode .section-title,
+body.dark-mode .section-text,
+body.dark-mode .portfolio-body h4,
+body.dark-mode .portfolio-body p,
+body.dark-mode .stat-box p,
+body.dark-mode .stat-box h3{
+    color:#fff;
+}
+
+/* Buttons */
+
+body.dark-mode .btn-light{
+    background:#fff;
+    color:#111;
+}
+
+body.dark-mode .btn-outline-light{
+    border-color:#fff;
+    color:#fff;
+}
+
+/* Footer */
+
+body.dark-mode footer{
+    background:#000;
+}
+
+/* Toggle */
+
 .theme-toggle{
-    width:45px;
-    height:45px;
+    width:42px;
+    height:42px;
     border:none;
     border-radius:50%;
     background:#111;
     color:#fff;
     cursor:pointer;
-    font-size:20px;
     transition:.3s;
 }
 
-.theme-toggle:hover{
-    transform:rotate(25deg);
-}
-
-.dark-mode{
-    background:#111;
-    color:#fff;
-}
-
-.dark-mode .site-nav{
-    background:#111 !important;
-}
-
-.dark-mode .nav-link,
-.dark-mode .brand-text,
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3,
-.dark-mode h4,
-.dark-mode h5,
-.dark-mode p{
-    color:#fff !important;
-}
-
-.dark-mode .about-section,
-.dark-mode .portfolio-section{
-    background:#181818;
-}
-
-.dark-mode .services-section{
-    background:#222;
-}
-
-.dark-mode .service-card,
-.dark-mode .portfolio-card,
-.dark-mode .stat-box{
-    background:#2a2a2a;
-    color:#fff;
-}
-
-.dark-mode footer{
-    background:#000;
+body.dark-mode .theme-toggle{
+    background:#fff;
+    color:#111;
 }
