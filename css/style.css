@@ -273,6 +273,21 @@ img{
     background-image:url("../images/dining.jpg");
 }
 
+.thumb-4{
+    background: url("../images/kitchen.jpg") center center/cover no-repeat;
+    min-height: 320px;
+}
+
+.thumb-5{
+    background: url("../images/bedroom.jpg") center center/cover no-repeat;
+    min-height: 320px;
+}
+
+.thumb-6{
+    background: url("../images/walking-closet.jpg") center center/cover no-repeat;
+    min-height: 320px;
+}
+
 .portfolio-body{
     padding:22px;
 }
