@@ -2,9 +2,9 @@
 // Navbar Shadow on Scroll
 // ===============================
 
-window.addEventListener("scroll", function () {
-    const navbar = document.querySelector(".navbar");
+const navbar = document.querySelector(".navbar");
 
+window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
         navbar.classList.add("shadow");
     } else {
@@ -12,80 +12,83 @@ window.addEventListener("scroll", function () {
     }
 });
 
+
 // ===============================
-// Fade-in Animation
+// Reveal Animation
 // ===============================
 
 const observer = new IntersectionObserver((entries) => {
+
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
         }
     });
+
 }, {
     threshold: 0.15
 });
 
-document.querySelectorAll("section").forEach((section) => {
-    section.classList.add("hidden");
-    observer.observe(section);
+document.querySelectorAll(".reveal").forEach((element) => {
+    observer.observe(element);
 });
+
 
 // ===============================
 // Back To Top Button
 // ===============================
 
-const topButton = document.createElement("button");
-topButton.innerHTML = "&uarr;";
-topButton.className = "top-btn";
-
-document.body.appendChild(topButton);
+const topButton = document.querySelector(".top-btn");
 
 window.addEventListener("scroll", () => {
+
     if (window.scrollY > 400) {
         topButton.classList.add("active");
     } else {
         topButton.classList.remove("active");
     }
+
 });
 
 topButton.addEventListener("click", () => {
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 });
 
-// =========================
-// DARK MODE
-// =========================
 
-const themeToggle = document.getElementById("theme-toggle");
+// ===============================
+// Active Navigation Highlight
+// ===============================
 
-if(localStorage.getItem("theme") === "dark"){
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
 
-    document.body.classList.add("dark-mode");
+window.addEventListener("scroll", () => {
 
-    themeToggle.innerHTML = "☀️";
+    let current = "";
 
-}
+    sections.forEach((section) => {
 
-themeToggle.addEventListener("click", ()=>{
+        const sectionTop = section.offsetTop - 120;
 
-    document.body.classList.toggle("dark-mode");
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
 
-    if(document.body.classList.contains("dark-mode")){
+    });
 
-        themeToggle.innerHTML = "☀️";
+    navLinks.forEach((link) => {
 
-        localStorage.setItem("theme","dark");
+        link.classList.remove("active");
 
-    }else{
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
 
-        themeToggle.innerHTML = "🌙";
-
-        localStorage.setItem("theme","light");
-
-    }
+    });
 
 });
