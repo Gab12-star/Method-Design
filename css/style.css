@@ -389,11 +389,9 @@ img{
 }
 
 .reveal{
-
-    opacity:1;
-
-    transform:none;
-
+    opacity:0;
+    transform:translateY(30px);
+    transition:0.8s ease;
 }
 
 .reveal.show{
