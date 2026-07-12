@@ -389,9 +389,8 @@ img{
 }
 
 .reveal{
-    opacity:0;
-    transform:translateY(30px);
-    transition:0.8s ease;
+    opacity:1 !important;
+    transform:none !important;
 }
 
 .reveal.show{
