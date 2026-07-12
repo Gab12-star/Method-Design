@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://gab12-star.github.io/Method-Design/</loc>
-        <lastmod>2026-07-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://gab12-star.github.io/Method-Design/</loc>
+    <priority>1.0</priority>
+  </url>
+
 </urlset>
