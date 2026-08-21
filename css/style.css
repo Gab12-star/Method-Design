@@ -52,7 +52,6 @@ img{
     border-bottom:1px solid rgba(0,0,0,.06);
     padding:16px 0;
     z-index:1000;
-
     transition:
         background .35s ease,
         box-shadow .35s ease,
@@ -133,6 +132,7 @@ img{
     padding-top:90px;
 }
 
+
 /* Animated Background */
 
 .hero::before{
@@ -141,7 +141,10 @@ img{
     inset:-5%;
 
     background:
-        linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,.42)),
+        linear-gradient(
+            rgba(0,0,0,.42),
+            rgba(0,0,0,.42)
+        ),
         radial-gradient(
             circle at top,
             rgba(255,255,255,.20),
@@ -150,8 +153,10 @@ img{
         url("../images/cover.jpg") center/cover no-repeat;
 
     z-index:-2;
+
     animation:heroZoom 18s ease-in-out infinite alternate;
 }
+
 
 /* Cinematic Gradient */
 
@@ -224,7 +229,7 @@ img{
 
 
 /* ==========================================
-   HERO ENTRANCE
+   HERO ENTRANCE ANIMATION
 ========================================== */
 
 .hero .eyebrow,
@@ -261,7 +266,7 @@ img{
 
 
 /* ==========================================
-   HERO BUTTONS
+   BUTTONS
 ========================================== */
 
 .btn{
@@ -290,6 +295,9 @@ img{
     box-shadow:0 14px 35px rgba(0,0,0,.25);
 }
 
+
+/* Button Shine */
+
 .hero-actions .btn::before{
     content:"";
     position:absolute;
@@ -308,6 +316,7 @@ img{
     );
 
     transform:skewX(-20deg);
+
     transition:left .7s ease;
 }
 
@@ -319,76 +328,6 @@ img{
     background:#fff;
     color:#111;
     border-color:#fff;
-}
-
-
-/* ==========================================
-   HERO SCROLL INDICATOR
-========================================== */
-
-.hero-scroll-indicator{
-    position:absolute;
-    left:50%;
-    bottom:28px;
-
-    transform:translateX(-50%);
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-
-    color:#fff;
-    font-size:.65rem;
-    font-weight:500;
-    letter-spacing:.2rem;
-    text-transform:uppercase;
-
-    opacity:.8;
-    z-index:5;
-}
-
-.scroll-mouse{
-    position:relative;
-
-    width:26px;
-    height:42px;
-
-    border:2px solid rgba(255,255,255,.8);
-    border-radius:20px;
-}
-
-.scroll-mouse::before{
-    content:"";
-
-    position:absolute;
-    top:7px;
-    left:50%;
-
-    width:4px;
-    height:8px;
-
-    border-radius:5px;
-    background:#fff;
-
-    transform:translateX(-50%);
-    animation:scrollWheel 1.7s ease infinite;
-}
-
-@keyframes scrollWheel{
-    0%{
-        opacity:0;
-        transform:translate(-50%,0);
-    }
-
-    30%{
-        opacity:1;
-    }
-
-    100%{
-        opacity:0;
-        transform:translate(-50%,14px);
-    }
 }
 
 
@@ -549,8 +488,11 @@ img{
     width:100%;
 
     background:#fff;
+
     border-radius:24px;
+
     overflow:hidden;
+
     cursor:pointer;
 
     box-shadow:0 12px 35px rgba(0,0,0,.06);
@@ -574,8 +516,10 @@ img{
 .project-image img{
     width:100%;
     height:420px;
+
     object-fit:cover;
     object-position:center;
+
     transition:transform .7s ease;
 }
 
@@ -594,6 +538,7 @@ img{
     background:rgba(0,0,0,.38);
 
     opacity:0;
+
     transition:opacity .35s ease;
 }
 
@@ -681,6 +626,7 @@ img{
     backdrop-filter:blur(8px);
 
     opacity:0;
+
     transition:opacity .4s ease;
 }
 
@@ -697,6 +643,7 @@ img{
     background:#fff;
 
     border-radius:26px;
+
     overflow:hidden;
 
     display:grid;
@@ -705,6 +652,7 @@ img{
     z-index:2;
 
     opacity:0;
+
     transform:translateY(40px) scale(.96);
 
     transition:
@@ -718,7 +666,9 @@ img{
 }
 
 
-/* Main Gallery Image */
+/* ==========================================
+   MAIN GALLERY IMAGE
+========================================== */
 
 .gallery-left{
     position:relative;
@@ -741,6 +691,7 @@ img{
     object-fit:contain;
 
     opacity:0;
+
     transform:scale(.98);
 
     transition:
@@ -754,7 +705,9 @@ img{
 }
 
 
-/* Gallery Information */
+/* ==========================================
+   GALLERY INFORMATION
+========================================== */
 
 .gallery-right{
     padding:50px;
@@ -783,13 +736,17 @@ img{
 }
 
 
-/* Gallery Thumbnails */
+/* ==========================================
+   GALLERY THUMBNAILS
+========================================== */
 
 #galleryThumbs{
     display:grid;
+
     grid-template-columns:repeat(2,minmax(0,1fr));
 
     gap:14px;
+
     margin-top:40px;
 }
 
@@ -802,6 +759,7 @@ img{
     border-radius:14px;
 
     overflow:hidden;
+
     cursor:pointer;
 
     transition:border-color .3s ease;
@@ -813,6 +771,7 @@ img{
 
 .gallery-thumb img{
     width:100%;
+
     aspect-ratio:16/10;
 
     object-fit:cover;
@@ -825,7 +784,9 @@ img{
 }
 
 
-/* Close Button */
+/* ==========================================
+   GALLERY CLOSE BUTTON
+========================================== */
 
 .gallery-close{
     position:absolute;
@@ -900,9 +861,16 @@ img{
     color:#d8c3a5;
 }
 
+
+/* Clickable Links */
+
 .contact-card a{
     color:#4da3ff;
     transition:color .25s ease;
+}
+
+.contact-card a i{
+    color:inherit;
 }
 
 .contact-card a:hover{
@@ -981,6 +949,7 @@ img{
 
 .reveal{
     opacity:0;
+
     transform:translateY(30px);
 
     transition:
@@ -1080,10 +1049,6 @@ img{
         font-size:clamp(2.5rem,12vw,4rem);
     }
 
-    .hero-scroll-indicator{
-        bottom:18px;
-    }
-
     .portfolio-grid{
         grid-template-columns:1fr;
         gap:20px;
@@ -1129,7 +1094,7 @@ img{
     }
 
     .hero-overlay{
-        padding:60px 0 90px;
+        padding:60px 0;
     }
 
     .hero h1{
@@ -1151,6 +1116,9 @@ img{
     .section-pad{
         padding:65px 0;
     }
+
+
+    /* Portfolio */
 
     .project-image img{
         height:240px;
@@ -1190,7 +1158,9 @@ img{
 
     #galleryThumbs{
         grid-template-columns:repeat(2,minmax(0,1fr));
+
         gap:10px;
+
         margin-top:25px;
     }
 
@@ -1201,6 +1171,9 @@ img{
         width:42px;
         height:42px;
     }
+
+
+    /* Back To Top */
 
     .top-btn{
         right:18px;
@@ -1227,8 +1200,7 @@ img{
     .hero .eyebrow,
     .hero h1,
     .hero-desc,
-    .hero-actions,
-    .scroll-mouse::before{
+    .hero-actions{
         animation:none;
     }
 
