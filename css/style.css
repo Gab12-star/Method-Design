@@ -925,3 +925,217 @@ padding:30px;
     }
 
 }
+
+/* Hero background animation */
+.hero{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+/* Animated background layer */
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:-5%;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)),
+        radial-gradient(
+            circle at top,
+            rgba(255,255,255,0.20),
+            rgba(0,0,0,0.25)
+        ),
+        url("../images/cover.jpg") center/cover no-repeat;
+
+    z-index:-2;
+
+    animation:heroZoom 18s ease-in-out infinite alternate;
+}
+
+/* Extra cinematic gradient */
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.35) 0%,
+            rgba(0,0,0,.10) 55%,
+            rgba(0,0,0,.20) 100%
+        );
+
+    z-index:-1;
+    pointer-events:none;
+}
+
+@keyframes heroZoom{
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.08);
+    }
+}
+
+
+/* ==========================================
+   HERO TEXT ENTRANCE
+========================================== */
+
+.hero .eyebrow,
+.hero h1,
+.hero-desc,
+.hero-actions{
+    opacity:0;
+    transform:translateY(30px);
+    animation:heroReveal .9s ease forwards;
+}
+
+.hero .eyebrow{
+    animation-delay:.15s;
+}
+
+.hero h1{
+    animation-delay:.30s;
+}
+
+.hero-desc{
+    animation-delay:.48s;
+}
+
+.hero-actions{
+    animation-delay:.65s;
+}
+
+@keyframes heroReveal{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* ==========================================
+   HERO TITLE EFFECT
+========================================== */
+
+.hero h1{
+    text-shadow:
+        0 5px 25px rgba(0,0,0,.25);
+}
+
+
+/* ==========================================
+   HERO BUTTON EFFECT
+========================================== */
+
+.hero-actions .btn{
+    position:relative;
+    overflow:hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+}
+
+.hero-actions .btn:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.25);
+}
+
+
+/* Shine animation */
+
+.hero-actions .btn::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.7s;
+}
+
+.hero-actions .btn:hover::before{
+    left:140%;
+}
+
+
+/* ==========================================
+   NAVBAR PREMIUM EFFECT
+========================================== */
+
+.site-nav{
+    transition:
+        background .35s ease,
+        box-shadow .35s ease,
+        padding .35s ease;
+}
+
+.site-nav.shadow{
+    background:rgba(255,255,255,.96);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.08);
+
+    padding:10px 0;
+}
+
+
+/* ==========================================
+   MOBILE PERFORMANCE
+========================================== */
+
+@media(max-width:768px){
+
+    .hero::before{
+        animation:none;
+        transform:none;
+    }
+
+    .hero{
+        min-height:100svh;
+    }
+
+    .hero h1{
+        font-size:clamp(2.5rem,12vw,4rem);
+    }
+
+}
+
+
+/* Accessibility */
+@media(prefers-reduced-motion:reduce){
+
+    .hero::before,
+    .hero .eyebrow,
+    .hero h1,
+    .hero-desc,
+    .hero-actions{
+        animation:none;
+        opacity:1;
+        transform:none;
+    }
+
+}
