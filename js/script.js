@@ -1,36 +1,48 @@
-// ALWAYS START AT TOP ON REFRESH
-if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
+// ==============================
+// START AT TOP
+// ==============================
+if("scrollRestoration" in history){
+    history.scrollRestoration="manual";
 }
 
-window.addEventListener("beforeunload", () => {
-    window.scrollTo(0, 0);
-});
-
-window.addEventListener("load", () => {
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant"
-    });
+window.addEventListener("load",()=>{
+    window.scrollTo(0,0);
 });
 
 
-// ==========================================
+// ==============================
+// ELEMENTS
+// ==============================
+const mobileMenuButton=document.querySelector(".mobile-menu-btn");
+const siteMenu=document.querySelector(".site-menu");
+
+const hero=document.querySelector(".hero");
+const heroStage=document.querySelector(".hero-stage");
+const heroCards=[...document.querySelectorAll(".hero-card")];
+const heroDots=[...document.querySelectorAll(".hero-dots button")];
+const heroCounter=document.querySelector(".hero-number");
+const heroProjectName=document.querySelector(".hero-project-name");
+
+const galleryModal=document.getElementById("galleryModal");
+const galleryMainImage=document.getElementById("galleryMainImage");
+const galleryCategory=document.getElementById("galleryCategory");
+const galleryTitle=document.getElementById("galleryTitle");
+const galleryThumbs=document.getElementById("galleryThumbs");
+const galleryCloseButton=document.querySelector(".gallery-close");
+const galleryOverlay=document.querySelector(".gallery-overlay");
+
+
+// ==============================
 // MOBILE MENU
-// ==========================================
-
-const mobileMenuButton = document.querySelector(".mobile-menu-btn");
-const siteMenu = document.querySelector(".site-menu");
-
-if (mobileMenuButton && siteMenu) {
-    mobileMenuButton.addEventListener("click", () => {
+// ==============================
+if(mobileMenuButton&&siteMenu){
+    mobileMenuButton.addEventListener("click",()=>{
         siteMenu.classList.toggle("active");
         mobileMenuButton.classList.toggle("active");
     });
 
-    siteMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
+    siteMenu.querySelectorAll("a").forEach(link=>{
+        link.addEventListener("click",()=>{
             siteMenu.classList.remove("active");
             mobileMenuButton.classList.remove("active");
         });
@@ -38,409 +50,528 @@ if (mobileMenuButton && siteMenu) {
 }
 
 
-// ==========================================
-// GENERAL SECTION REVEAL
-// ==========================================
+// ==============================
+// REVEAL
+// ==============================
+const revealElements=document.querySelectorAll(".reveal");
 
-const revealElements = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+if("IntersectionObserver" in window){
+    const revealObserver=new IntersectionObserver((entries,observer)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
                 entry.target.classList.add("show");
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.12,
-        rootMargin: "0px 0px -50px 0px"
+    },{
+        threshold:.12,
+        rootMargin:"0px 0px -50px 0px"
     });
 
-    revealElements.forEach((element) => revealObserver.observe(element));
-} else {
-    revealElements.forEach((element) => element.classList.add("show"));
+    revealElements.forEach(el=>revealObserver.observe(el));
+}else{
+    revealElements.forEach(el=>el.classList.add("show"));
 }
 
 
-// ==========================================
-// SCROLL-DRIVEN HERO
-// ==========================================
-
-const hero = document.querySelector(".hero");
-let heroFramePending = false;
-
-function updateHeroScroll() {
-    heroFramePending = false;
-
-    if (!hero) return;
-
-    // Keep mobile lightweight
-    if (window.innerWidth <= 700) {
-        hero.style.setProperty("--hero-progress", "0");
-        return;
-    }
-
-    const rect = hero.getBoundingClientRect();
-    const distance = Math.max(hero.offsetHeight, 1);
-
-    let progress = -rect.top / distance;
-    progress = Math.max(0, Math.min(progress, 1));
-
-    hero.style.setProperty("--hero-progress", progress.toFixed(4));
-}
-
-function requestHeroUpdate() {
-    if (heroFramePending) return;
-
-    heroFramePending = true;
-    requestAnimationFrame(updateHeroScroll);
-}
-
-window.addEventListener("scroll", requestHeroUpdate, { passive: true });
-window.addEventListener("resize", requestHeroUpdate);
-
-requestHeroUpdate();
-
-
-// ==========================================
+// ==============================
 // PROJECT REVEAL
-// ==========================================
+// ==============================
+const projectItems=document.querySelectorAll(".project-item");
 
-const projectItems = document.querySelectorAll(".project-item");
-
-if ("IntersectionObserver" in window) {
-    const projectObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+if("IntersectionObserver" in window){
+    const projectObserver=new IntersectionObserver((entries,observer)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
                 entry.target.classList.add("project-visible");
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.14,
-        rootMargin: "0px 0px -40px 0px"
+    },{
+        threshold:.14,
+        rootMargin:"0px 0px -40px 0px"
     });
 
-    projectItems.forEach((project) => projectObserver.observe(project));
-} else {
-    projectItems.forEach((project) => {
+    projectItems.forEach(project=>projectObserver.observe(project));
+}else{
+    projectItems.forEach(project=>{
         project.classList.add("project-visible");
     });
 }
 
 
-// ==========================================
+// ==============================
 // PROJECT DATA
-// ==========================================
-
-const projects = {
-    "modern-tropical": {
-        title: "Modern Tropical",
-        category: "Residential",
-        description: "Warm tropical interiors with natural wood finishes and contemporary elegance.",
-        images: [
-            "images/Modern Tropical/Modern Tropical.jpg",
-            "images/Modern Tropical/Modern Tropical (2).jpg",
-            "images/Modern Tropical/Modern Tropical (3).jpg",
-            "images/Modern Tropical/Modern Tropical (4).jpg",
-            "images/Modern Tropical/Modern Tropical (5).jpg",
-            "images/Modern Tropical/Modern Tropical (6).jpg",
-            "images/Modern Tropical/Modern Tropical (7).jpg",
-            "images/Modern Tropical/Modern Tropical (8).jpg"
+// ==============================
+const projects={
+    "forbeswood-bgc":{
+        title:"FORBESWOOD BGC",
+        category:"68SQM. 2-BEDROOM CONDO UNIT",
+        images:[
+            "images/projects/1.0.png",
+            "images/projects/1.1.png",
+            "images/projects/1.2.png",
+            "images/projects/1.3.png",
+            "images/projects/1.4.png",
+            "images/projects/1.5.png",
+            "images/projects/1.6.png"
         ]
     },
 
-    "modern-luxury-style": {
-        title: "Modern Luxury Style",
-        category: "Residential",
-        description: "Sophisticated interiors featuring premium finishes and timeless luxury.",
-        images: [
-            "images/Modern Luxury Style/Modern Luxury Style.jpg",
-            "images/Modern Luxury Style/Modern Luxury Style (2).jpg",
-            "images/Modern Luxury Style/Modern Luxury Style (3).jpg",
-            "images/Modern Luxury Style/Modern Luxury Style (4).jpg",
-            "images/Modern Luxury Style/Modern Luxury Style (5).jpg",
-            "images/Modern Luxury Style/Modern Luxury Style (6).jpg"
+    "parkridge-estate":{
+        title:"PARKRIDGE ESTATE",
+        category:"3-STOREY RESIDENTIAL",
+        images:[
+            "images/projects/2.1.png",
+            "images/projects/2.2.png",
+            "images/projects/2.3.png",
+            "images/projects/2.4.png",
+            "images/projects/2.5.png",
+            "images/projects/2.6.png",
+            "images/projects/2.7.png",
+            "images/projects/2.8.png",
+            "images/projects/2.9.png",
+            "images/projects/2.10.png",
+            "images/projects/2.11.png",
+            "images/projects/2.12.png",
+            "images/projects/2.13.png",
+            "images/projects/2.14.png",
+            "images/projects/2.15.png",
+            "images/projects/2.16.jpg",
+            "images/projects/2.17.png",
+            "images/projects/2.18.png",
+            "images/projects/2.19.png",
+            "images/projects/2.20.png",
+            "images/projects/2.21.png",
+            "images/projects/2.22.png",
+            "images/projects/2.23.png"
         ]
     },
 
-    "master-bedroom": {
-        title: "Master Bedroom",
-        category: "Bedroom",
-        description: "Comfortable and elegant bedroom designed for relaxation.",
-        images: [
-            "images/Master Bedroom/Master Bedroom.jpg",
-            "images/Master Bedroom/Master Bedroom (2).jpg",
-            "images/Master Bedroom/Master Bedroom (3).jpg",
-            "images/Master Bedroom/Master Bedroom (4).jpg"
+    "real-commercial-tacloban":{
+        title:"REAL COMMERCIAL TACLOBAN",
+        category:"3-STOREY RESIDENTIAL",
+        images:[
+            "images/projects/3.1.png",
+            "images/projects/3.2.png",
+            "images/projects/3.3.png",
+            "images/projects/3.4.png",
+            "images/projects/3.5.png",
+            "images/projects/3.6.png",
+            "images/projects/3.7.png",
+            "images/projects/3.8.png",
+            "images/projects/3.9.png",
+            "images/projects/3.10.png"
         ]
     },
 
-    "rustic-industrial-look": {
-        title: "Rustic-Industrial Look",
-        category: "Interior Design",
-        description: "A blend of industrial textures and warm rustic materials.",
-        images: [
-            "images/Rustic-Industrial look/Rustic-Industrial look.jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (2).jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (3).jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (4).jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (5).jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (6).jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (7).jpg",
-            "images/Rustic-Industrial look/Rustic-Industrial look (8).jpg"
+    "shang-residences":{
+        title:"SHANG RESIDENCES, WACK WACK",
+        category:"168SQM. 3-BEDROOM CONDO UNIT",
+        images:[
+            "images/projects/4.1.png",
+            "images/projects/4.2.png",
+            "images/projects/4.3.png",
+            "images/projects/4.4.png",
+            "images/projects/4.5.png"
         ]
     },
 
-    "our-first-condo-project": {
-        title: "Our First Condo Project",
-        category: "Condo",
-        description: "Modern condominium interior designed for comfort and functionality.",
-        images: [
-            "images/Our first condo project/Our first condo project.jpg",
-            "images/Our first condo project/Our first condo project (2).jpg",
-            "images/Our first condo project/Our first condo project (3).jpg",
-            "images/Our first condo project/Our first condo project (4).jpg",
-            "images/Our first condo project/Our first condo project (5).jpg",
-            "images/Our first condo project/Our first condo project (6).jpg",
-            "images/Our first condo project/Our first condo project (7).jpg",
-            "images/Our first condo project/Our first condo project (8).jpg",
-            "images/Our first condo project/Our first condo project (9).jpg",
-            "images/Our first condo project/Our first condo project (10).jpg"
-        ]
-    },
-
-    "luxury-and-ease-in-the-heart-of-the-metro": {
-        title: "Luxury and Ease in the Heart of the Metro",
-        category: "Residential",
-        description: "Contemporary urban living with luxurious interior details.",
-        images: [
-            "images/Luxury and ease in the heart of the Metro/Luxury and ease in the heart of the Metro.jpg",
-            "images/Luxury and ease in the heart of the Metro/Luxury and ease in the heart of the Metro (2).jpg"
-        ]
-    },
-
-    "luxury-retreat": {
-        title: "Luxury Retreat",
-        category: "Residential",
-        description: "A relaxing residential space inspired by modern luxury living.",
-        images: [
-            "images/Luxury Retreat/Luxury Retreat.jpg",
-            "images/Luxury Retreat/Luxury Retreat (2).jpg",
-            "images/Luxury Retreat/Luxury Retreat (3).jpg",
-            "images/Luxury Retreat/Luxury Retreat (4).jpg",
-            "images/Luxury Retreat/Luxury Retreat (5).jpg"
-        ]
-    },
-
-    "modern-contemporary-look": {
-        title: "Modern Contemporary Look",
-        category: "Residential",
-        description: "Clean architectural lines paired with refined modern interiors.",
-        images: [
-            "images/Modern contemporary look/Modern contemporary look.jpg",
-            "images/Modern contemporary look/Modern contemporary look (2).jpg",
-            "images/Modern contemporary look/Modern contemporary look (3).jpg"
-        ]
-    },
-
-    "modern-balinese-resort": {
-        title: "Modern Balinese Resort",
-        category: "Resort",
-        description: "Resort-inspired living with tropical warmth and natural textures.",
-        images: [
-            "images/Modern Balinese Resort/Modern Balinese Resort.jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (2).jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (3).jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (4).jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (5).jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (6).jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (7).jpg",
-            "images/Modern Balinese Resort/Modern Balinese Resort (8).jpg"
-        ]
-    },
-
-    "custom-modular-cabinets": {
-        title: "Custom Modular Cabinets",
-        category: "Kitchen",
-        description: "Custom-built cabinetry designed for style, storage, and everyday functionality.",
-        images: [
-            "images/Custom Modular Cabinets/Custom Modular Cabinets.jpg",
-            "images/Custom Modular Cabinets/Custom Modular Cabinets (2).jpg",
-            "images/Custom Modular Cabinets/Custom Modular Cabinets (3).jpg",
-            "images/Custom Modular Cabinets/Custom Modular Cabinets (4).jpg"
+    "the-rise-makati":{
+        title:"THE RISE MAKATI",
+        category:"28SQM. ONE BEDROOM CONDO UNIT",
+        images:[
+            "images/projects/5.1.png",
+            "images/projects/5.2.png",
+            "images/projects/5.3.png",
+            "images/projects/5.4.png",
+            "images/projects/5.5.png"
         ]
     }
 };
 
 
-// ==========================================
-// GALLERY ELEMENTS
-// ==========================================
+// ==============================
+// STACKED HERO
+// ==============================
+const heroProjects=[
+    "FORBESWOOD BGC",
+    "PARKRIDGE ESTATE",
+    "REAL COMMERCIAL TACLOBAN",
+    "SHANG RESIDENCES, WACK WACK",
+    "THE RISE MAKATI"
+];
 
-const galleryModal = document.getElementById("galleryModal");
-const galleryMainImage = document.getElementById("galleryMainImage");
-const galleryCategory = document.getElementById("galleryCategory");
-const galleryTitle = document.getElementById("galleryTitle");
-const galleryDescription = document.getElementById("galleryDescription");
-const galleryThumbs = document.getElementById("galleryThumbs");
-const galleryCloseButton = document.querySelector(".gallery-close");
-const galleryOverlay = document.querySelector(".gallery-overlay");
+let heroIndex=0;
+let heroAnimating=false;
 
-let activeProjectKey = null;
-let activeImageIndex = 0;
+let wheelAccumulator=0;
+let wheelTimer=null;
 
-
-// ==========================================
-// GET ACTIVE IMAGES
-// ==========================================
-
-function getActiveImages() {
-    if (!activeProjectKey) return [];
-
-    const project = projects[activeProjectKey];
-    return project?.images || [];
-}
+let touchStartX=0;
+let touchStartY=0;
 
 
-// ==========================================
-// MAIN IMAGE
-// ==========================================
+// UPDATE CARD POSITIONS
+function updateHero(){
+    if(!heroCards.length)return;
 
-function setMainImage(src) {
-    if (!galleryMainImage || !src) return;
+    heroCards.forEach((card,index)=>{
+        card.classList.remove(
+            "active",
+            "prev",
+            "next",
+            "far-prev",
+            "far-next",
+            "hidden-card"
+        );
 
-    galleryMainImage.classList.remove("loaded");
+        const position=index-heroIndex;
 
-    galleryMainImage.onload = () => {
-        galleryMainImage.classList.add("loaded");
-    };
-
-    galleryMainImage.onerror = () => {
-        console.warn("Could not load gallery image:", src);
-        galleryMainImage.classList.add("loaded");
-    };
-
-    galleryMainImage.src = src;
-}
-
-
-// ==========================================
-// ACTIVE THUMBNAIL
-// ==========================================
-
-function setActiveThumb(index) {
-    if (!galleryThumbs) return;
-
-    const thumbnails = galleryThumbs.querySelectorAll(".gallery-thumb");
-
-    thumbnails.forEach((thumbnail, thumbnailIndex) => {
-        thumbnail.classList.toggle("active", thumbnailIndex === index);
+        if(position===0){
+            card.classList.add("active");
+        }else if(position===-1){
+            card.classList.add("prev");
+        }else if(position===1){
+            card.classList.add("next");
+        }else if(position===-2){
+            card.classList.add("far-prev");
+        }else if(position===2){
+            card.classList.add("far-next");
+        }else{
+            card.classList.add("hidden-card");
+        }
     });
 
-    const activeThumbnail = thumbnails[index];
+    heroDots.forEach((dot,index)=>{
+        dot.classList.toggle(
+            "active",
+            index===heroIndex
+        );
+    });
 
-    if (activeThumbnail) {
-        activeThumbnail.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "nearest"
-        });
+    if(heroCounter){
+        heroCounter.textContent=
+            `${String(heroIndex+1).padStart(2,"0")} / ${String(heroCards.length).padStart(2,"0")}`;
+    }
+
+    if(heroProjectName){
+        heroProjectName.textContent=
+            heroProjects[heroIndex]||"";
     }
 }
 
 
-// ==========================================
-// GALLERY META
-// ==========================================
+// CHANGE CARD
+function changeHero(direction){
+    if(heroAnimating)return false;
 
-function updateGalleryMeta(project) {
-    if (!project) return;
+    const newIndex=heroIndex+direction;
 
-    if (galleryCategory) galleryCategory.textContent = project.category;
-    if (galleryTitle) galleryTitle.textContent = project.title;
-    if (galleryDescription) galleryDescription.textContent = project.description;
+    if(newIndex<0||newIndex>=heroCards.length){
+        return false;
+    }
+
+    heroAnimating=true;
+    heroIndex=newIndex;
+
+    updateHero();
+
+    setTimeout(()=>{
+        heroAnimating=false;
+    },700);
+
+    return true;
 }
 
 
-// ==========================================
-// OPEN / CLOSE GALLERY
-// ==========================================
+// HERO CURRENTLY ON SCREEN?
+function heroIsVisible(){
+    if(!hero)return false;
 
-function openGallery() {
-    if (!galleryModal) return;
+    const rect=hero.getBoundingClientRect();
+
+    return(
+        rect.top<window.innerHeight*.55 &&
+        rect.bottom>window.innerHeight*.45
+    );
+}
+
+
+// ==============================
+// MOUSE WHEEL / TRACKPAD
+// ==============================
+window.addEventListener("wheel",event=>{
+    if(!heroCards.length)return;
+    if(!heroIsVisible())return;
+    if(galleryModal?.classList.contains("active"))return;
+
+    const direction=event.deltaY>0?1:-1;
+
+    // AT LAST CARD + SCROLL DOWN:
+    // allow normal page scroll
+    if(
+        direction===1 &&
+        heroIndex===heroCards.length-1
+    ){
+        wheelAccumulator=0;
+        return;
+    }
+
+    // AT FIRST CARD + SCROLL UP:
+    // allow normal page scroll
+    if(
+        direction===-1 &&
+        heroIndex===0
+    ){
+        wheelAccumulator=0;
+        return;
+    }
+
+    event.preventDefault();
+
+    if(heroAnimating)return;
+
+    wheelAccumulator+=event.deltaY;
+
+    clearTimeout(wheelTimer);
+
+    wheelTimer=setTimeout(()=>{
+        wheelAccumulator=0;
+    },120);
+
+    // Prevent one tiny trackpad movement
+    // from changing multiple cards
+    if(Math.abs(wheelAccumulator)<40){
+        return;
+    }
+
+    const changed=
+        changeHero(wheelAccumulator>0?1:-1);
+
+    if(changed){
+        wheelAccumulator=0;
+    }
+},{
+    passive:false
+});
+
+
+// ==============================
+// MOBILE SWIPE
+// ==============================
+if(heroStage){
+    heroStage.addEventListener("touchstart",event=>{
+        const touch=event.touches[0];
+
+        touchStartX=touch.clientX;
+        touchStartY=touch.clientY;
+    },{
+        passive:true
+    });
+
+    heroStage.addEventListener("touchend",event=>{
+        if(heroAnimating)return;
+
+        const touch=event.changedTouches[0];
+
+        const deltaX=
+            touchStartX-touch.clientX;
+
+        const deltaY=
+            touchStartY-touch.clientY;
+
+        const absX=Math.abs(deltaX);
+        const absY=Math.abs(deltaY);
+
+        if(absX<45&&absY<45){
+            return;
+        }
+
+        let direction;
+
+        if(absY>=absX){
+            direction=deltaY>0?1:-1;
+        }else{
+            direction=deltaX>0?1:-1;
+        }
+
+        changeHero(direction);
+    },{
+        passive:true
+    });
+}
+
+
+// ==============================
+// HERO DOTS
+// ==============================
+heroDots.forEach((dot,index)=>{
+    dot.addEventListener("click",()=>{
+        if(heroAnimating)return;
+        if(index===heroIndex)return;
+
+        heroAnimating=true;
+        heroIndex=index;
+
+        updateHero();
+
+        setTimeout(()=>{
+            heroAnimating=false;
+        },700);
+    });
+});
+
+
+// INITIALIZE HERO
+updateHero();
+
+
+// ==============================
+// GALLERY
+// ==============================
+let activeProjectKey=null;
+let activeImageIndex=0;
+
+
+function getActiveImages(){
+    if(!activeProjectKey)return[];
+
+    return projects[activeProjectKey]?.images||[];
+}
+
+
+function setMainImage(src){
+    if(!galleryMainImage||!src)return;
+
+    galleryMainImage.classList.remove("loaded");
+
+    galleryMainImage.onload=()=>{
+        galleryMainImage.classList.add("loaded");
+    };
+
+    galleryMainImage.onerror=()=>{
+        console.warn("Could not load:",src);
+        galleryMainImage.classList.add("loaded");
+    };
+
+    galleryMainImage.src=src;
+}
+
+
+function setActiveThumb(index){
+    if(!galleryThumbs)return;
+
+    const thumbs=
+        galleryThumbs.querySelectorAll(".gallery-thumb");
+
+    thumbs.forEach((thumb,i)=>{
+        thumb.classList.toggle(
+            "active",
+            i===index
+        );
+    });
+
+    thumbs[index]?.scrollIntoView({
+        behavior:"smooth",
+        block:"nearest",
+        inline:"nearest"
+    });
+}
+
+
+function openGallery(){
+    if(!galleryModal)return;
 
     galleryModal.classList.add("active");
-    galleryModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    galleryModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow="hidden";
 }
 
-function closeGallery() {
-    if (!galleryModal) return;
+
+function closeGallery(){
+    if(!galleryModal)return;
 
     galleryModal.classList.remove("active");
-    galleryModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    galleryModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
-    activeProjectKey = null;
-    activeImageIndex = 0;
+    document.body.style.overflow="";
 
-    if (galleryThumbs) galleryThumbs.innerHTML = "";
+    activeProjectKey=null;
+    activeImageIndex=0;
 
-    if (galleryMainImage) {
-        galleryMainImage.src = "";
+    if(galleryThumbs){
+        galleryThumbs.innerHTML="";
+    }
+
+    if(galleryMainImage){
+        galleryMainImage.src="";
         galleryMainImage.classList.remove("loaded");
     }
 }
 
 
-// ==========================================
-// RENDER GALLERY
-// ==========================================
+function renderGallery(projectKey){
+    const project=projects[projectKey];
 
-function renderGallery(projectKey) {
-    const project = projects[projectKey];
+    if(!project)return;
 
-    if (!project) {
-        console.warn("Project not found:", projectKey);
-        return;
+    const images=project.images||[];
+
+    if(!images.length)return;
+
+    activeProjectKey=projectKey;
+    activeImageIndex=0;
+
+    if(galleryCategory){
+        galleryCategory.textContent=
+            project.category;
     }
 
-    const images = project.images || [];
-
-    if (!images.length) {
-        console.warn("No images found:", projectKey);
-        return;
+    if(galleryTitle){
+        galleryTitle.textContent=
+            project.title;
     }
 
-    activeProjectKey = projectKey;
-    activeImageIndex = 0;
+    if(galleryThumbs){
+        galleryThumbs.innerHTML="";
 
-    updateGalleryMeta(project);
+        const fragment=
+            document.createDocumentFragment();
 
-    if (galleryThumbs) {
-        galleryThumbs.innerHTML = "";
+        images.forEach((src,index)=>{
+            const thumbnail=
+                document.createElement("button");
 
-        const fragment = document.createDocumentFragment();
+            const image=
+                document.createElement("img");
 
-        images.forEach((src, index) => {
-            const thumbnail = document.createElement("button");
-            thumbnail.type = "button";
-            thumbnail.className = "gallery-thumb";
-            thumbnail.setAttribute("aria-label", `${project.title} image ${index + 1}`);
+            thumbnail.type="button";
+            thumbnail.className="gallery-thumb";
 
-            const image = document.createElement("img");
-            image.src = src;
-            image.alt = `${project.title} ${index + 1}`;
-            image.loading = "lazy";
+            thumbnail.setAttribute(
+                "aria-label",
+                `${project.title} image ${index+1}`
+            );
+
+            image.src=src;
+            image.alt=`${project.title} ${index+1}`;
+            image.loading="lazy";
 
             thumbnail.appendChild(image);
 
-            thumbnail.addEventListener("click", () => {
-                activeImageIndex = index;
-                setMainImage(images[activeImageIndex]);
-                setActiveThumb(activeImageIndex);
+            thumbnail.addEventListener("click",()=>{
+                activeImageIndex=index;
+
+                setMainImage(images[index]);
+                setActiveThumb(index);
             });
 
             fragment.appendChild(thumbnail);
@@ -449,79 +580,107 @@ function renderGallery(projectKey) {
         galleryThumbs.appendChild(fragment);
     }
 
-    if (galleryMainImage) {
-        galleryMainImage.alt = project.title;
+    if(galleryMainImage){
+        galleryMainImage.alt=
+            project.title;
     }
 
     setMainImage(images[0]);
     setActiveThumb(0);
+
     openGallery();
 }
 
 
-// ==========================================
-// PREVIOUS / NEXT IMAGE
-// ==========================================
+function shiftGalleryImage(direction){
+    const images=getActiveImages();
 
-function shiftGalleryImage(direction) {
-    const images = getActiveImages();
+    if(!images.length)return;
 
-    if (!images.length) return;
+    activeImageIndex=
+        (
+            activeImageIndex+
+            direction+
+            images.length
+        )%images.length;
 
-    activeImageIndex =
-        (activeImageIndex + direction + images.length) % images.length;
+    setMainImage(
+        images[activeImageIndex]
+    );
 
-    setMainImage(images[activeImageIndex]);
-    setActiveThumb(activeImageIndex);
+    setActiveThumb(
+        activeImageIndex
+    );
 }
 
 
-// ==========================================
-// PROJECT CLICKS
-// ==========================================
+// PROJECT CARDS
+document.querySelectorAll(".project-card").forEach(card=>{
+    card.addEventListener("click",()=>{
+        const key=card.dataset.project;
 
-const projectCards = document.querySelectorAll(".project-card");
-
-projectCards.forEach((card) => {
-    card.addEventListener("click", () => {
-        const projectKey = card.dataset.project;
-
-        if (!projectKey || !projects[projectKey]) return;
-
-        renderGallery(projectKey);
+        if(key&&projects[key]){
+            renderGallery(key);
+        }
     });
 });
 
 
-// ==========================================
-// CLOSE EVENTS
-// ==========================================
+// CLOSE
+galleryCloseButton?.addEventListener(
+    "click",
+    closeGallery
+);
 
-if (galleryCloseButton) {
-    galleryCloseButton.addEventListener("click", closeGallery);
-}
-
-if (galleryOverlay) {
-    galleryOverlay.addEventListener("click", closeGallery);
-}
+galleryOverlay?.addEventListener(
+    "click",
+    closeGallery
+);
 
 
-// ==========================================
-// KEYBOARD CONTROLS
-// ==========================================
+// ==============================
+// KEYBOARD
+// ==============================
+document.addEventListener("keydown",event=>{
 
-document.addEventListener("keydown", (event) => {
-    if (!galleryModal?.classList.contains("active")) return;
+    // GALLERY FIRST
+    if(galleryModal?.classList.contains("active")){
 
-    if (event.key === "Escape") {
-        closeGallery();
+        if(event.key==="Escape"){
+            closeGallery();
+        }
+
+        if(event.key==="ArrowRight"){
+            shiftGalleryImage(1);
+        }
+
+        if(event.key==="ArrowLeft"){
+            shiftGalleryImage(-1);
+        }
+
+        return;
     }
 
-    if (event.key === "ArrowRight") {
-        shiftGalleryImage(1);
+    // HERO
+    if(!heroIsVisible())return;
+
+    if(
+        event.key==="ArrowRight"||
+        event.key==="ArrowDown"
+    ){
+        if(heroIndex<heroCards.length-1){
+            event.preventDefault();
+            changeHero(1);
+        }
     }
 
-    if (event.key === "ArrowLeft") {
-        shiftGalleryImage(-1);
+    if(
+        event.key==="ArrowLeft"||
+        event.key==="ArrowUp"
+    ){
+        if(heroIndex>0){
+            event.preventDefault();
+            changeHero(-1);
+        }
     }
 });

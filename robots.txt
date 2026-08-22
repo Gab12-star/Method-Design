@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gab12-star.github.io/Method-Design/sitemap.xml

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Method Designs</title>
 
     <link rel="icon" href="images/favicon.ico">
@@ -10,15 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Roboto+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav class="site-nav">
     <div class="nav-inner">
+
         <a href="#home" class="site-brand">
             <img src="images/Method design logo.jpg" alt="Method Designs">
             <span>METHOD DESIGNS</span>
@@ -35,50 +35,73 @@
             <a href="#services">SERVICES</a>
             <a href="#contact">CONTACT</a>
         </div>
+
     </div>
 </nav>
 
-<!-- HERO -->
+
+<!-- STACKED HERO -->
 <header id="home" class="hero">
+
     <div class="hero-art hero-art-one"></div>
     <div class="hero-art hero-art-two"></div>
 
-    <div class="hero-image-wrap">
-        <img src="images/cover.jpg" alt="Method Designs Interior" class="hero-image">
+    <div class="hero-stage">
+
+        <div class="hero-card active" data-index="0">
+            <img src="images/projects/1.0.png" alt="Forbeswood BGC">
+        </div>
+
+        <div class="hero-card next" data-index="1">
+            <img src="images/projects/2.1.png" alt="Parkridge Estate">
+        </div>
+
+        <div class="hero-card far-next" data-index="2">
+            <img src="images/projects/3.1.png" alt="Real Commercial Tacloban">
+        </div>
+
+        <div class="hero-card hidden-card" data-index="3">
+            <img src="images/projects/4.1.png" alt="Shang Residences Wack Wack">
+        </div>
+
+        <div class="hero-card hidden-card" data-index="4">
+            <img src="images/projects/5.1.png" alt="The Rise Makati">
+        </div>
 
         <div class="hero-name">
             <span>METHOD</span>
             <span>DESIGNS</span>
         </div>
+
+        <span class="hero-scroll-label">SCROLL</span>
+
     </div>
+
 
     <div class="hero-caption">
-        <span class="hero-number">01 / 10</span>
-        <p>PLANNING · INTERIOR DESIGN · CONSTRUCTION</p>
+
+        <span class="hero-number">01 / 05</span>
+
+        <p class="hero-project-name">
+            FORBESWOOD BGC
+        </p>
+
+        <div class="hero-dots">
+            <button class="active" type="button" aria-label="Project 1"></button>
+            <button type="button" aria-label="Project 2"></button>
+            <button type="button" aria-label="Project 3"></button>
+            <button type="button" aria-label="Project 4"></button>
+            <button type="button" aria-label="Project 5"></button>
+        </div>
+
     </div>
+
 </header>
 
-<!-- INTRO -->
-<section class="intro-section reveal">
-    <div class="intro-number">01</div>
-
-    <div class="intro-copy">
-        <p class="small-label">METHOD DESIGNS</p>
-
-        <h1>
-            MODERN SPACES.<br>
-            THOUGHTFUL INTERIORS.
-        </h1>
-
-        <p class="intro-description">
-            Method Designs creates elegant residential and commercial spaces
-            with a minimalist, luxury-inspired aesthetic.
-        </p>
-    </div>
-</section>
 
 <!-- PROJECTS -->
 <section id="portfolio" class="projects-section">
+
     <header class="editorial-heading reveal">
         <span>02</span>
 
@@ -88,173 +111,115 @@
         </div>
     </header>
 
+
     <div class="projects-list">
 
         <!-- PROJECT 01 -->
-        <article class="project-item project-card reveal" data-project="modern-tropical">
+        <article class="project-item project-card reveal" data-project="forbeswood-bgc">
+
             <div class="project-photo">
-                <img src="images/Modern Tropical/Modern Tropical.jpg" alt="Modern Tropical">
+                <img src="images/projects/1.0.png" alt="Forbeswood BGC">
                 <div class="project-view">VIEW PROJECT</div>
             </div>
 
             <div class="project-meta">
                 <span>01</span>
+
                 <div>
-                    <h3>MODERN TROPICAL</h3>
-                    <p>Residential Interior</p>
+                    <h3>FORBESWOOD BGC</h3>
+                    <p>68SQM. 2-BEDROOM CONDO UNIT</p>
                 </div>
             </div>
+
         </article>
 
+
         <!-- PROJECT 02 -->
-        <article class="project-item project-card offset-project reveal" data-project="modern-luxury-style">
+        <article class="project-item project-card offset-project reveal" data-project="parkridge-estate">
+
             <div class="project-photo">
-                <img src="images/Modern Luxury Style/Modern Luxury Style.jpg" alt="Modern Luxury Style">
+                <img src="images/projects/2.1.png" alt="Parkridge Estate">
                 <div class="project-view">VIEW PROJECT</div>
             </div>
 
             <div class="project-meta">
                 <span>02</span>
+
                 <div>
-                    <h3>MODERN LUXURY STYLE</h3>
-                    <p>Residential Interior</p>
+                    <h3>PARKRIDGE ESTATE</h3>
+                    <p>3-STOREY RESIDENTIAL</p>
                 </div>
             </div>
+
         </article>
 
+
         <!-- PROJECT 03 -->
-        <article class="project-item project-card reveal" data-project="master-bedroom">
+        <article class="project-item project-card reveal" data-project="real-commercial-tacloban">
+
             <div class="project-photo">
-                <img src="images/Master Bedroom/Master Bedroom.jpg" alt="Master Bedroom">
+                <img src="images/projects/3.1.png" alt="Real Commercial Tacloban">
                 <div class="project-view">VIEW PROJECT</div>
             </div>
 
             <div class="project-meta">
                 <span>03</span>
+
                 <div>
-                    <h3>MASTER BEDROOM</h3>
-                    <p>Bedroom Interior</p>
+                    <h3>REAL COMMERCIAL TACLOBAN</h3>
+                    <p>3-STOREY RESIDENTIAL</p>
                 </div>
             </div>
+
         </article>
 
+
         <!-- PROJECT 04 -->
-        <article class="project-item project-card offset-project reveal" data-project="rustic-industrial-look">
+        <article class="project-item project-card offset-project reveal" data-project="shang-residences">
+
             <div class="project-photo">
-                <img src="images/Rustic-Industrial look/Rustic-Industrial look.jpg" alt="Rustic Industrial Look">
+                <img src="images/projects/4.1.png" alt="Shang Residences Wack Wack">
                 <div class="project-view">VIEW PROJECT</div>
             </div>
 
             <div class="project-meta">
                 <span>04</span>
+
                 <div>
-                    <h3>RUSTIC-INDUSTRIAL LOOK</h3>
-                    <p>Interior Design</p>
+                    <h3>SHANG RESIDENCES, WACK WACK</h3>
+                    <p>168SQM. 3-BEDROOM CONDO UNIT</p>
                 </div>
             </div>
+
         </article>
 
+
         <!-- PROJECT 05 -->
-        <article class="project-item project-card reveal" data-project="our-first-condo-project">
+        <article class="project-item project-card reveal" data-project="the-rise-makati">
+
             <div class="project-photo">
-                <img src="images/Our first condo project/Our first condo project.jpg" alt="Our First Condo Project">
+                <img src="images/projects/5.1.png" alt="The Rise Makati">
                 <div class="project-view">VIEW PROJECT</div>
             </div>
 
             <div class="project-meta">
                 <span>05</span>
+
                 <div>
-                    <h3>OUR FIRST CONDO PROJECT</h3>
-                    <p>Condominium Interior</p>
+                    <h3>THE RISE MAKATI</h3>
+                    <p>28SQM. ONE BEDROOM CONDO UNIT</p>
                 </div>
             </div>
-        </article>
 
-        <!-- PROJECT 06 -->
-        <article class="project-item project-card offset-project reveal" data-project="luxury-and-ease-in-the-heart-of-the-metro">
-            <div class="project-photo">
-                <img src="images/Luxury and ease in the heart of the Metro/Luxury and ease in the heart of the Metro.jpg" alt="Luxury and Ease in the Heart of the Metro">
-                <div class="project-view">VIEW PROJECT</div>
-            </div>
-
-            <div class="project-meta">
-                <span>06</span>
-                <div>
-                    <h3>LUXURY AND EASE IN THE HEART OF THE METRO</h3>
-                    <p>Residential Interior</p>
-                </div>
-            </div>
-        </article>
-
-        <!-- PROJECT 07 -->
-        <article class="project-item project-card reveal" data-project="luxury-retreat">
-            <div class="project-photo">
-                <img src="images/Luxury Retreat/Luxury Retreat.jpg" alt="Luxury Retreat">
-                <div class="project-view">VIEW PROJECT</div>
-            </div>
-
-            <div class="project-meta">
-                <span>07</span>
-                <div>
-                    <h3>LUXURY RETREAT</h3>
-                    <p>Residential Interior</p>
-                </div>
-            </div>
-        </article>
-
-        <!-- PROJECT 08 -->
-        <article class="project-item project-card offset-project reveal" data-project="modern-contemporary-look">
-            <div class="project-photo">
-                <img src="images/Modern contemporary look/Modern contemporary look.jpg" alt="Modern Contemporary Look">
-                <div class="project-view">VIEW PROJECT</div>
-            </div>
-
-            <div class="project-meta">
-                <span>08</span>
-                <div>
-                    <h3>MODERN CONTEMPORARY LOOK</h3>
-                    <p>Residential Interior</p>
-                </div>
-            </div>
-        </article>
-
-        <!-- PROJECT 09 -->
-        <article class="project-item project-card reveal" data-project="modern-balinese-resort">
-            <div class="project-photo">
-                <img src="images/Modern Balinese Resort/Modern Balinese Resort.jpg" alt="Modern Balinese Resort">
-                <div class="project-view">VIEW PROJECT</div>
-            </div>
-
-            <div class="project-meta">
-                <span>09</span>
-                <div>
-                    <h3>MODERN BALINESE RESORT</h3>
-                    <p>Resort Interior</p>
-                </div>
-            </div>
-        </article>
-
-        <!-- PROJECT 10 -->
-        <article class="project-item project-card offset-project reveal" data-project="custom-modular-cabinets">
-            <div class="project-photo">
-                <img src="images/Custom Modular Cabinets/Custom Modular Cabinets.jpg" alt="Custom Modular Cabinets">
-                <div class="project-view">VIEW PROJECT</div>
-            </div>
-
-            <div class="project-meta">
-                <span>10</span>
-                <div>
-                    <h3>CUSTOM MODULAR CABINETS</h3>
-                    <p>Kitchen Design</p>
-                </div>
-            </div>
         </article>
 
     </div>
 </section>
 
+
 <!-- ABOUT -->
 <section id="about" class="about-section reveal">
+
     <header class="editorial-heading">
         <span>03</span>
 
@@ -265,6 +230,7 @@
     </header>
 
     <div class="about-layout">
+
         <div class="about-main">
             <h2>
                 DESIGNING SPACES<br>
@@ -273,6 +239,7 @@
         </div>
 
         <div class="about-copy">
+
             <p>
                 Based in Manila, Method Designs focuses on planning,
                 interior design and construction.
@@ -283,13 +250,17 @@
                 space planning, neutral tones and premium finishes to
                 create refined contemporary interiors.
             </p>
+
         </div>
+
     </div>
 
 </section>
 
+
 <!-- SERVICES -->
 <section id="services" class="services-section reveal">
+
     <header class="editorial-heading">
         <span>04</span>
 
@@ -300,6 +271,7 @@
     </header>
 
     <div class="services-list">
+
         <div class="service-row">
             <span>01</span>
             <h3>PLANNING</h3>
@@ -323,14 +295,21 @@
             <h3>CONCEPT DESIGN</h3>
             <p>Visual direction tailored to each client and project.</p>
         </div>
+
     </div>
+
 </section>
+
 
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
-    <div class="contact-number">05</div>
+
+    <div class="contact-number">
+        05
+    </div>
 
     <div class="contact-main">
+
         <p>START A PROJECT</p>
 
         <h2>
@@ -338,9 +317,12 @@
             SOMETHING<br>
             BEAUTIFUL.
         </h2>
+
     </div>
 
+
     <div class="contact-details">
+
         <div>
             <span>LOCATION</span>
             <p>Manila, Philippines</p>
@@ -355,7 +337,7 @@
             <span>EMAIL</span>
 
             <a href="mailto:methoddesignsph@gmail.com">
-                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <i class="fa-solid fa-envelope"></i>
                 <span>methoddesignsph@gmail.com</span>
             </a>
         </div>
@@ -364,17 +346,20 @@
             <span>SOCIAL</span>
 
             <a href="https://www.facebook.com/methoddesignsPH" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                <i class="fa-brands fa-facebook"></i>
                 <span>Facebook</span>
             </a>
 
             <a href="https://www.instagram.com/methoddesignsph" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                <i class="fa-brands fa-instagram"></i>
                 <span>Instagram</span>
             </a>
         </div>
+
     </div>
+
 </section>
+
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -383,11 +368,14 @@
     <a href="#home">BACK TO TOP ↑</a>
 </footer>
 
-<!-- PROJECT GALLERY -->
+
+<!-- GALLERY -->
 <div class="gallery-modal" id="galleryModal" aria-hidden="true">
+
     <div class="gallery-overlay"></div>
 
     <div class="gallery-box">
+
         <button class="gallery-close" type="button" aria-label="Close gallery">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -399,13 +387,14 @@
         <div class="gallery-right">
             <span id="galleryCategory"></span>
             <h2 id="galleryTitle"></h2>
-            <p id="galleryDescription"></p>
             <div id="galleryThumbs"></div>
         </div>
+
     </div>
+
 </div>
 
-<!-- JAVASCRIPT -->
+
 <script src="js/script.js"></script>
 
 </body>
