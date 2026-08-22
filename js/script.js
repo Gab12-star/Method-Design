@@ -195,11 +195,11 @@ const projects={
 // STACKED HERO
 // ==============================
 const heroProjects=[
-    "FORBESWOOD BGC",
-    "PARKRIDGE ESTATE",
     "REAL COMMERCIAL TACLOBAN",
+    "THE RISE MAKATI",
+    "PARKRIDGE ESTATE",
     "SHANG RESIDENCES, WACK WACK",
-    "THE RISE MAKATI"
+    "FORBESWOOD BGC"
 ];
 
 let heroIndex=0;
