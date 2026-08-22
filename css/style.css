@@ -53,6 +53,7 @@ NAVIGATION
     background:rgba(244,244,239,.95);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(0,0,0,.04);
     transition:box-shadow .3s ease;
 }
 
@@ -72,8 +73,8 @@ NAVIGATION
 }
 
 .site-brand img{
-    width:65px;
-    height:65px;
+    width:60px;
+    height:60px;
     object-fit:contain;
 }
 
@@ -784,17 +785,25 @@ MOBILE
 ===================================== */
 
 @media(max-width:700px){
+
+    /* NAVIGATION */
     .nav-inner{
-        min-height:85px;
+        min-height:70px;
+        width:92%;
+    }
+
+    .site-brand{
+        gap:10px;
     }
 
     .site-brand img{
-        width:50px;
-        height:50px;
+        width:45px;
+        height:45px;
     }
 
     .site-brand span{
-        font-size:.7rem;
+        font-size:.65rem;
+        letter-spacing:.14em;
     }
 
     .mobile-menu-btn{
@@ -819,22 +828,32 @@ MOBILE
 
     .site-menu{
         position:absolute;
-        top:85px;
+        top:70px;
         left:0;
         width:100%;
-        padding:30px 5%;
-        background:var(--bg);
+        padding:25px 5%;
+        background:rgba(244,244,239,.98);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
         display:none;
         flex-direction:column;
         gap:20px;
-        border-top:1px solid #ddd;
+        border-top:1px solid rgba(0,0,0,.08);
+        box-shadow:0 15px 30px rgba(0,0,0,.06);
     }
 
     .site-menu.active{
         display:flex;
     }
 
-    /* Hero */
+    .site-menu a{
+        margin:0;
+        padding:5px 0;
+        font-size:.8rem;
+    }
+
+
+    /* HERO */
     .hero{
         width:92%;
         margin-bottom:100px;
@@ -873,7 +892,8 @@ MOBILE
         font-size:.85rem;
     }
 
-    /* Intro / headings */
+
+    /* INTRO + HEADINGS */
     .intro-section,
     .editorial-heading{
         width:90%;
@@ -898,7 +918,8 @@ MOBILE
         margin-top:30px;
     }
 
-    /* Projects */
+
+    /* PROJECTS */
     .projects-section{
         padding:80px 0 100px;
     }
@@ -930,7 +951,8 @@ MOBILE
         font-size:2.4rem;
     }
 
-    /* About */
+
+    /* ABOUT */
     .about-section{
         padding:100px 0;
     }
@@ -945,7 +967,8 @@ MOBILE
         margin-top:60px;
     }
 
-    /* Services */
+
+    /* SERVICES */
     .services-section{
         padding:100px 0;
     }
@@ -964,7 +987,8 @@ MOBILE
         font-size:2rem;
     }
 
-    /* Contact */
+
+    /* CONTACT */
     .contact-section{
         padding:100px 5%;
         grid-template-columns:1fr;
@@ -978,9 +1002,11 @@ MOBILE
 
     .contact-details a{
         width:fit-content;
+        max-width:100%;
     }
 
-    /* Footer */
+
+    /* FOOTER */
     .footer{
         padding:30px 5%;
         flex-direction:column;
@@ -988,10 +1014,12 @@ MOBILE
         align-items:flex-start;
     }
 
-    /* Gallery */
+
+    /* GALLERY */
     .gallery-box{
         width:96%;
         height:94vh;
+        height:94svh;
         grid-template-columns:1fr;
         grid-template-rows:45% 55%;
     }
@@ -1002,6 +1030,36 @@ MOBILE
 
     .gallery-right h2{
         font-size:2.5rem;
+    }
+}
+
+
+/* =====================================
+SMALL PHONE
+===================================== */
+
+@media(max-width:420px){
+    .site-brand img{
+        width:42px;
+        height:42px;
+    }
+
+    .site-brand span{
+        font-size:.6rem;
+        letter-spacing:.1em;
+    }
+
+    .hero-image-wrap{
+        min-height:420px;
+    }
+
+    .project-meta h3{
+        font-size:2rem;
+    }
+
+    .contact-details a{
+        font-size:.9rem;
+        overflow-wrap:anywhere;
     }
 }
 
