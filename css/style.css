@@ -46,14 +46,19 @@ NAVIGATION
 ===================================== */
 
 .site-nav{
-    position:relative;
+    position:sticky;
+    top:0;
     width:100%;
-    z-index:100;
+    z-index:1000;
+    background:rgba(244,244,239,.95);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    transition:box-shadow .3s ease;
 }
 
 .nav-inner{
     width:min(1100px,90%);
-    min-height:105px;
+    min-height:85px;
     margin:auto;
     display:flex;
     align-items:center;
