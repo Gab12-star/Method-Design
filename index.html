@@ -19,6 +19,7 @@
     <meta name="twitter:image" content="https://gab12-star.github.io/Method-Design/images/projects/3.1.png">
 
     <link rel="icon" href="images/favicon.ico">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -29,6 +30,20 @@
 </head>
 
 <body>
+
+<!-- INTRO -->
+<div class="site-intro" id="siteIntro">
+    <div class="intro-content">
+        <div class="intro-mark">
+            <img src="images/Method design logo.jpg" alt="Method Designs">
+        </div>
+
+        <div class="intro-line"></div>
+
+        <p>METHOD DESIGNS</p>
+    </div>
+</div>
+
 
 <!-- NAV -->
 <nav class="site-nav">
@@ -126,6 +141,7 @@
             <p>SELECTED WORK</p>
         </div>
     </header>
+
 
     <div class="projects-list">
 
@@ -234,6 +250,7 @@
         </article>
 
     </div>
+
 </section>
 
 
@@ -338,6 +355,7 @@
 
     </div>
 
+
     <div class="contact-details">
 
         <div>
@@ -415,7 +433,30 @@
 
 </div>
 
+
 <script src="js/script.js"></script>
 
+<!-- INTRO SCRIPT -->
+<script>
+(function(){
+    const intro = document.getElementById("siteIntro");
+
+    if(!intro) return;
+
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
+
+    setTimeout(function(){
+        intro.classList.add("hide");
+
+        setTimeout(function(){
+            document.body.style.overflow = "";
+        }, 700);
+
+    }, 1800);
+})();
+</script>
+
 </body>
+</html>
 </html>

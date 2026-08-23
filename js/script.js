@@ -1,18 +1,18 @@
 // ==============================
-// START AT TOP
+// PAGE START
 // ==============================
 if("scrollRestoration" in history){
     history.scrollRestoration="manual";
 }
 
-window.addEventListener("load",()=>{
-    window.scrollTo(0,0);
-});
+window.scrollTo(0,0);
 
 
 // ==============================
 // ELEMENTS
 // ==============================
+const siteIntro=document.getElementById("siteIntro");
+
 const mobileMenuButton=document.querySelector(".mobile-menu-btn");
 const siteMenu=document.querySelector(".site-menu");
 
@@ -33,9 +33,23 @@ const galleryOverlay=document.querySelector(".gallery-overlay");
 
 
 // ==============================
+// WEBSITE INTRO
+// ==============================
+if(siteIntro){
+    document.body.classList.add("intro-open");
+
+    window.setTimeout(()=>{
+        siteIntro.classList.add("hide");
+        document.body.classList.remove("intro-open");
+    },2000);
+}
+
+
+// ==============================
 // MOBILE MENU
 // ==============================
 if(mobileMenuButton&&siteMenu){
+
     mobileMenuButton.addEventListener("click",()=>{
         siteMenu.classList.toggle("active");
         mobileMenuButton.classList.toggle("active");
@@ -51,26 +65,36 @@ if(mobileMenuButton&&siteMenu){
 
 
 // ==============================
-// REVEAL
+// GENERAL REVEAL
 // ==============================
 const revealElements=document.querySelectorAll(".reveal");
 
 if("IntersectionObserver" in window){
-    const revealObserver=new IntersectionObserver((entries,observer)=>{
-        entries.forEach(entry=>{
-            if(entry.isIntersecting){
-                entry.target.classList.add("show");
-                observer.unobserve(entry.target);
-            }
-        });
-    },{
-        threshold:.12,
-        rootMargin:"0px 0px -50px 0px"
+
+    const revealObserver=new IntersectionObserver(
+        (entries,observer)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold:.12,
+            rootMargin:"0px 0px -50px 0px"
+        }
+    );
+
+    revealElements.forEach(element=>{
+        revealObserver.observe(element);
     });
 
-    revealElements.forEach(el=>revealObserver.observe(el));
 }else{
-    revealElements.forEach(el=>el.classList.add("show"));
+
+    revealElements.forEach(element=>{
+        element.classList.add("show");
+    });
 }
 
 
@@ -80,20 +104,28 @@ if("IntersectionObserver" in window){
 const projectItems=document.querySelectorAll(".project-item");
 
 if("IntersectionObserver" in window){
-    const projectObserver=new IntersectionObserver((entries,observer)=>{
-        entries.forEach(entry=>{
-            if(entry.isIntersecting){
-                entry.target.classList.add("project-visible");
-                observer.unobserve(entry.target);
-            }
-        });
-    },{
-        threshold:.14,
-        rootMargin:"0px 0px -40px 0px"
+
+    const projectObserver=new IntersectionObserver(
+        (entries,observer)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add("project-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold:.14,
+            rootMargin:"0px 0px -40px 0px"
+        }
+    );
+
+    projectItems.forEach(project=>{
+        projectObserver.observe(project);
     });
 
-    projectItems.forEach(project=>projectObserver.observe(project));
 }else{
+
     projectItems.forEach(project=>{
         project.classList.add("project-visible");
     });
@@ -104,17 +136,33 @@ if("IntersectionObserver" in window){
 // PROJECT DATA
 // ==============================
 const projects={
-    "forbeswood-bgc":{
-        title:"FORBESWOOD BGC",
-        category:"68SQM. 2-BEDROOM CONDO UNIT",
+
+    "real-commercial-tacloban":{
+        title:"REAL COMMERCIAL TACLOBAN",
+        category:"3-STOREY RESIDENTIAL",
         images:[
-            "images/projects/1.0.png",
-            "images/projects/1.1.png",
-            "images/projects/1.2.png",
-            "images/projects/1.3.png",
-            "images/projects/1.4.png",
-            "images/projects/1.5.png",
-            "images/projects/1.6.png"
+            "images/projects/3.1.png",
+            "images/projects/3.2.png",
+            "images/projects/3.3.png",
+            "images/projects/3.4.png",
+            "images/projects/3.5.png",
+            "images/projects/3.6.png",
+            "images/projects/3.7.png",
+            "images/projects/3.8.png",
+            "images/projects/3.9.png",
+            "images/projects/3.10.png"
+        ]
+    },
+
+    "the-rise-makati":{
+        title:"THE RISE MAKATI",
+        category:"28SQM. ONE BEDROOM CONDO UNIT",
+        images:[
+            "images/projects/5.1.png",
+            "images/projects/5.2.png",
+            "images/projects/5.3.png",
+            "images/projects/5.4.png",
+            "images/projects/5.5.png"
         ]
     },
 
@@ -148,23 +196,6 @@ const projects={
         ]
     },
 
-    "real-commercial-tacloban":{
-        title:"REAL COMMERCIAL TACLOBAN",
-        category:"3-STOREY RESIDENTIAL",
-        images:[
-            "images/projects/3.1.png",
-            "images/projects/3.2.png",
-            "images/projects/3.3.png",
-            "images/projects/3.4.png",
-            "images/projects/3.5.png",
-            "images/projects/3.6.png",
-            "images/projects/3.7.png",
-            "images/projects/3.8.png",
-            "images/projects/3.9.png",
-            "images/projects/3.10.png"
-        ]
-    },
-
     "shang-residences":{
         title:"SHANG RESIDENCES, WACK WACK",
         category:"168SQM. 3-BEDROOM CONDO UNIT",
@@ -177,22 +208,25 @@ const projects={
         ]
     },
 
-    "the-rise-makati":{
-        title:"THE RISE MAKATI",
-        category:"28SQM. ONE BEDROOM CONDO UNIT",
+    "forbeswood-bgc":{
+        title:"FORBESWOOD BGC",
+        category:"68SQM. 2-BEDROOM CONDO UNIT",
         images:[
-            "images/projects/5.1.png",
-            "images/projects/5.2.png",
-            "images/projects/5.3.png",
-            "images/projects/5.4.png",
-            "images/projects/5.5.png"
+            "images/projects/1.0.png",
+            "images/projects/1.1.png",
+            "images/projects/1.2.png",
+            "images/projects/1.3.png",
+            "images/projects/1.4.png",
+            "images/projects/1.5.png",
+            "images/projects/1.6.png"
         ]
     }
+
 };
 
 
 // ==============================
-// STACKED HERO
+// HERO DATA
 // ==============================
 const heroProjects=[
     "REAL COMMERCIAL TACLOBAN",
@@ -212,35 +246,18 @@ let touchStartX=0;
 let touchStartY=0;
 
 
-// UPDATE CARD POSITIONS
+// ==============================
+// UPDATE HERO
+// ==============================
 function updateHero(){
+
     if(!heroCards.length)return;
 
     heroCards.forEach((card,index)=>{
-        card.classList.remove(
+        card.classList.toggle(
             "active",
-            "prev",
-            "next",
-            "far-prev",
-            "far-next",
-            "hidden-card"
+            index===heroIndex
         );
-
-        const position=index-heroIndex;
-
-        if(position===0){
-            card.classList.add("active");
-        }else if(position===-1){
-            card.classList.add("prev");
-        }else if(position===1){
-            card.classList.add("next");
-        }else if(position===-2){
-            card.classList.add("far-prev");
-        }else if(position===2){
-            card.classList.add("far-next");
-        }else{
-            card.classList.add("hidden-card");
-        }
     });
 
     heroDots.forEach((dot,index)=>{
@@ -262,13 +279,19 @@ function updateHero(){
 }
 
 
-// CHANGE CARD
+// ==============================
+// CHANGE HERO
+// ==============================
 function changeHero(direction){
+
     if(heroAnimating)return false;
 
     const newIndex=heroIndex+direction;
 
-    if(newIndex<0||newIndex>=heroCards.length){
+    if(
+        newIndex<0 ||
+        newIndex>=heroCards.length
+    ){
         return false;
     }
 
@@ -277,16 +300,19 @@ function changeHero(direction){
 
     updateHero();
 
-    setTimeout(()=>{
+    window.setTimeout(()=>{
         heroAnimating=false;
-    },700);
+    },600);
 
     return true;
 }
 
 
-// HERO CURRENTLY ON SCREEN?
+// ==============================
+// HERO VISIBILITY
+// ==============================
 function heroIsVisible(){
+
     if(!hero)return false;
 
     const rect=hero.getBoundingClientRect();
@@ -299,107 +325,153 @@ function heroIsVisible(){
 
 
 // ==============================
-// MOUSE WHEEL / TRACKPAD
+// HERO MOUSE WHEEL / TRACKPAD
 // ==============================
-window.addEventListener("wheel",event=>{
-    if(!heroCards.length)return;
-    if(!heroIsVisible())return;
-    if(galleryModal?.classList.contains("active"))return;
+window.addEventListener(
+    "wheel",
+    event=>{
 
-    const direction=event.deltaY>0?1:-1;
+        if(!heroCards.length)return;
+        if(!heroIsVisible())return;
+        if(galleryModal?.classList.contains("active"))return;
 
-    // AT LAST CARD + SCROLL DOWN:
-    // allow normal page scroll
-    if(
-        direction===1 &&
-        heroIndex===heroCards.length-1
-    ){
-        wheelAccumulator=0;
-        return;
+        /* Disable hero control while intro is visible */
+        if(siteIntro&&!siteIntro.classList.contains("hide")){
+            return;
+        }
+
+        const direction=
+            event.deltaY>0?1:-1;
+
+
+        /* LAST IMAGE:
+           allow normal page scroll down */
+        if(
+            direction===1 &&
+            heroIndex===heroCards.length-1
+        ){
+            wheelAccumulator=0;
+            return;
+        }
+
+
+        /* FIRST IMAGE:
+           allow normal page scroll up */
+        if(
+            direction===-1 &&
+            heroIndex===0
+        ){
+            wheelAccumulator=0;
+            return;
+        }
+
+
+        event.preventDefault();
+
+        if(heroAnimating)return;
+
+        wheelAccumulator+=event.deltaY;
+
+        clearTimeout(wheelTimer);
+
+        wheelTimer=window.setTimeout(()=>{
+            wheelAccumulator=0;
+        },120);
+
+
+        /* Avoid accidental tiny trackpad movement */
+        if(Math.abs(wheelAccumulator)<40){
+            return;
+        }
+
+
+        const changed=
+            changeHero(
+                wheelAccumulator>0?1:-1
+            );
+
+        if(changed){
+            wheelAccumulator=0;
+        }
+    },
+    {
+        passive:false
     }
-
-    // AT FIRST CARD + SCROLL UP:
-    // allow normal page scroll
-    if(
-        direction===-1 &&
-        heroIndex===0
-    ){
-        wheelAccumulator=0;
-        return;
-    }
-
-    event.preventDefault();
-
-    if(heroAnimating)return;
-
-    wheelAccumulator+=event.deltaY;
-
-    clearTimeout(wheelTimer);
-
-    wheelTimer=setTimeout(()=>{
-        wheelAccumulator=0;
-    },120);
-
-    // Prevent one tiny trackpad movement
-    // from changing multiple cards
-    if(Math.abs(wheelAccumulator)<40){
-        return;
-    }
-
-    const changed=
-        changeHero(wheelAccumulator>0?1:-1);
-
-    if(changed){
-        wheelAccumulator=0;
-    }
-},{
-    passive:false
-});
+);
 
 
 // ==============================
 // MOBILE SWIPE
 // ==============================
 if(heroStage){
-    heroStage.addEventListener("touchstart",event=>{
-        const touch=event.touches[0];
 
-        touchStartX=touch.clientX;
-        touchStartY=touch.clientY;
-    },{
-        passive:true
-    });
+    heroStage.addEventListener(
+        "touchstart",
+        event=>{
 
-    heroStage.addEventListener("touchend",event=>{
-        if(heroAnimating)return;
+            const touch=event.touches[0];
 
-        const touch=event.changedTouches[0];
-
-        const deltaX=
-            touchStartX-touch.clientX;
-
-        const deltaY=
-            touchStartY-touch.clientY;
-
-        const absX=Math.abs(deltaX);
-        const absY=Math.abs(deltaY);
-
-        if(absX<45&&absY<45){
-            return;
+            touchStartX=touch.clientX;
+            touchStartY=touch.clientY;
+        },
+        {
+            passive:true
         }
+    );
 
-        let direction;
 
-        if(absY>=absX){
-            direction=deltaY>0?1:-1;
-        }else{
-            direction=deltaX>0?1:-1;
+    heroStage.addEventListener(
+        "touchend",
+        event=>{
+
+            if(heroAnimating)return;
+
+            const touch=
+                event.changedTouches[0];
+
+            const deltaX=
+                touchStartX-touch.clientX;
+
+            const deltaY=
+                touchStartY-touch.clientY;
+
+            const absX=
+                Math.abs(deltaX);
+
+            const absY=
+                Math.abs(deltaY);
+
+
+            /* Ignore tiny movements */
+            if(
+                absX<45 &&
+                absY<45
+            ){
+                return;
+            }
+
+
+            let direction;
+
+
+            if(absY>=absX){
+
+                direction=
+                    deltaY>0?1:-1;
+
+            }else{
+
+                direction=
+                    deltaX>0?1:-1;
+            }
+
+
+            changeHero(direction);
+        },
+        {
+            passive:true
         }
-
-        changeHero(direction);
-    },{
-        passive:true
-    });
+    );
 }
 
 
@@ -407,7 +479,9 @@ if(heroStage){
 // HERO DOTS
 // ==============================
 heroDots.forEach((dot,index)=>{
+
     dot.addEventListener("click",()=>{
+
         if(heroAnimating)return;
         if(index===heroIndex)return;
 
@@ -416,54 +490,83 @@ heroDots.forEach((dot,index)=>{
 
         updateHero();
 
-        setTimeout(()=>{
+        window.setTimeout(()=>{
             heroAnimating=false;
-        },700);
+        },600);
     });
 });
 
 
-// INITIALIZE HERO
+// INITIAL HERO
 updateHero();
 
 
 // ==============================
-// GALLERY
+// GALLERY STATE
 // ==============================
 let activeProjectKey=null;
 let activeImageIndex=0;
 
 
 function getActiveImages(){
-    if(!activeProjectKey)return[];
 
-    return projects[activeProjectKey]?.images||[];
+    if(!activeProjectKey){
+        return[];
+    }
+
+    return(
+        projects[activeProjectKey]?.images||
+        []
+    );
 }
 
 
+// ==============================
+// GALLERY MAIN IMAGE
+// ==============================
 function setMainImage(src){
-    if(!galleryMainImage||!src)return;
+
+    if(
+        !galleryMainImage ||
+        !src
+    ){
+        return;
+    }
 
     galleryMainImage.classList.remove("loaded");
+
 
     galleryMainImage.onload=()=>{
         galleryMainImage.classList.add("loaded");
     };
 
+
     galleryMainImage.onerror=()=>{
-        console.warn("Could not load:",src);
+        console.warn(
+            "Could not load:",
+            src
+        );
+
         galleryMainImage.classList.add("loaded");
     };
+
 
     galleryMainImage.src=src;
 }
 
 
+// ==============================
+// ACTIVE THUMBNAIL
+// ==============================
 function setActiveThumb(index){
+
     if(!galleryThumbs)return;
 
     const thumbs=
-        galleryThumbs.querySelectorAll(".gallery-thumb");
+        galleryThumbs.querySelectorAll(
+            ".gallery-thumb"
+        );
+
 
     thumbs.forEach((thumb,i)=>{
         thumb.classList.toggle(
@@ -471,6 +574,7 @@ function setActiveThumb(index){
             i===index
         );
     });
+
 
     thumbs[index]?.scrollIntoView({
         behavior:"smooth",
@@ -480,10 +584,15 @@ function setActiveThumb(index){
 }
 
 
+// ==============================
+// OPEN GALLERY
+// ==============================
 function openGallery(){
+
     if(!galleryModal)return;
 
     galleryModal.classList.add("active");
+
     galleryModal.setAttribute(
         "aria-hidden",
         "false"
@@ -493,10 +602,15 @@ function openGallery(){
 }
 
 
+// ==============================
+// CLOSE GALLERY
+// ==============================
 function closeGallery(){
+
     if(!galleryModal)return;
 
     galleryModal.classList.remove("active");
+
     galleryModal.setAttribute(
         "aria-hidden",
         "true"
@@ -507,95 +621,148 @@ function closeGallery(){
     activeProjectKey=null;
     activeImageIndex=0;
 
+
     if(galleryThumbs){
         galleryThumbs.innerHTML="";
     }
 
+
     if(galleryMainImage){
         galleryMainImage.src="";
-        galleryMainImage.classList.remove("loaded");
+        galleryMainImage.classList.remove(
+            "loaded"
+        );
     }
 }
 
 
+// ==============================
+// RENDER GALLERY
+// ==============================
 function renderGallery(projectKey){
-    const project=projects[projectKey];
+
+    const project=
+        projects[projectKey];
 
     if(!project)return;
 
-    const images=project.images||[];
+
+    const images=
+        project.images||[];
 
     if(!images.length)return;
 
+
     activeProjectKey=projectKey;
     activeImageIndex=0;
+
 
     if(galleryCategory){
         galleryCategory.textContent=
             project.category;
     }
 
+
     if(galleryTitle){
         galleryTitle.textContent=
             project.title;
     }
 
+
     if(galleryThumbs){
+
         galleryThumbs.innerHTML="";
 
         const fragment=
             document.createDocumentFragment();
 
+
         images.forEach((src,index)=>{
+
             const thumbnail=
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
             const image=
-                document.createElement("img");
+                document.createElement(
+                    "img"
+                );
+
 
             thumbnail.type="button";
-            thumbnail.className="gallery-thumb";
+            thumbnail.className=
+                "gallery-thumb";
+
 
             thumbnail.setAttribute(
                 "aria-label",
                 `${project.title} image ${index+1}`
             );
 
+
             image.src=src;
-            image.alt=`${project.title} ${index+1}`;
+
+            image.alt=
+                `${project.title} ${index+1}`;
+
             image.loading="lazy";
+
 
             thumbnail.appendChild(image);
 
-            thumbnail.addEventListener("click",()=>{
-                activeImageIndex=index;
 
-                setMainImage(images[index]);
-                setActiveThumb(index);
-            });
+            thumbnail.addEventListener(
+                "click",
+                ()=>{
 
-            fragment.appendChild(thumbnail);
+                    activeImageIndex=index;
+
+                    setMainImage(
+                        images[index]
+                    );
+
+                    setActiveThumb(index);
+                }
+            );
+
+
+            fragment.appendChild(
+                thumbnail
+            );
         });
 
-        galleryThumbs.appendChild(fragment);
+
+        galleryThumbs.appendChild(
+            fragment
+        );
     }
+
 
     if(galleryMainImage){
         galleryMainImage.alt=
             project.title;
     }
 
+
     setMainImage(images[0]);
+
     setActiveThumb(0);
 
     openGallery();
 }
 
 
+// ==============================
+// SHIFT GALLERY IMAGE
+// ==============================
 function shiftGalleryImage(direction){
-    const images=getActiveImages();
+
+    const images=
+        getActiveImages();
 
     if(!images.length)return;
+
 
     activeImageIndex=
         (
@@ -604,9 +771,11 @@ function shiftGalleryImage(direction){
             images.length
         )%images.length;
 
+
     setMainImage(
         images[activeImageIndex]
     );
+
 
     setActiveThumb(
         activeImageIndex
@@ -614,19 +783,34 @@ function shiftGalleryImage(direction){
 }
 
 
-// PROJECT CARDS
-document.querySelectorAll(".project-card").forEach(card=>{
-    card.addEventListener("click",()=>{
-        const key=card.dataset.project;
+// ==============================
+// PROJECT CARD CLICKS
+// ==============================
+document
+    .querySelectorAll(".project-card")
+    .forEach(card=>{
 
-        if(key&&projects[key]){
-            renderGallery(key);
-        }
+        card.addEventListener(
+            "click",
+            ()=>{
+
+                const key=
+                    card.dataset.project;
+
+                if(
+                    key &&
+                    projects[key]
+                ){
+                    renderGallery(key);
+                }
+            }
+        );
     });
-});
 
 
-// CLOSE
+// ==============================
+// GALLERY CLOSE
+// ==============================
 galleryCloseButton?.addEventListener(
     "click",
     closeGallery
@@ -639,48 +823,64 @@ galleryOverlay?.addEventListener(
 
 
 // ==============================
-// KEYBOARD
+// KEYBOARD CONTROLS
 // ==============================
-document.addEventListener("keydown",event=>{
+document.addEventListener(
+    "keydown",
+    event=>{
 
-    // GALLERY FIRST
-    if(galleryModal?.classList.contains("active")){
+        /* GALLERY */
+        if(
+            galleryModal?.
+            classList.contains("active")
+        ){
 
-        if(event.key==="Escape"){
-            closeGallery();
+            if(event.key==="Escape"){
+                closeGallery();
+            }
+
+            if(event.key==="ArrowRight"){
+                shiftGalleryImage(1);
+            }
+
+            if(event.key==="ArrowLeft"){
+                shiftGalleryImage(-1);
+            }
+
+            return;
         }
 
-        if(event.key==="ArrowRight"){
-            shiftGalleryImage(1);
+
+        /* HERO */
+        if(!heroIsVisible()){
+            return;
         }
 
-        if(event.key==="ArrowLeft"){
-            shiftGalleryImage(-1);
+
+        if(
+            event.key==="ArrowRight" ||
+            event.key==="ArrowDown"
+        ){
+
+            if(
+                heroIndex<
+                heroCards.length-1
+            ){
+                event.preventDefault();
+                changeHero(1);
+            }
         }
 
-        return;
+
+        if(
+            event.key==="ArrowLeft" ||
+            event.key==="ArrowUp"
+        ){
+
+            if(heroIndex>0){
+                event.preventDefault();
+                changeHero(-1);
+            }
+        }
     }
-
-    // HERO
-    if(!heroIsVisible())return;
-
-    if(
-        event.key==="ArrowRight"||
-        event.key==="ArrowDown"
-    ){
-        if(heroIndex<heroCards.length-1){
-            event.preventDefault();
-            changeHero(1);
-        }
-    }
-
-    if(
-        event.key==="ArrowLeft"||
-        event.key==="ArrowUp"
-    ){
-        if(heroIndex>0){
-            event.preventDefault();
-            changeHero(-1);
-        }
-    }
-});
+);
