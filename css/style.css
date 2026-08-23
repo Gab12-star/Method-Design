@@ -24,7 +24,6 @@ html {
 
 body {
     margin: 0;
-
     background: var(--bg);
     color: var(--black);
 
@@ -69,7 +68,6 @@ button {
 .site-nav {
     position: sticky;
     top: 0;
-
     z-index: 1000;
 
     width: 100%;
@@ -170,7 +168,7 @@ button {
 }
 
 
-/* MOBILE BUTTON */
+/* MOBILE MENU BUTTON */
 
 .mobile-menu-btn {
     display: none;
@@ -189,7 +187,7 @@ button {
     height: calc(100svh - 85px);
     min-height: 650px;
 
-    padding-bottom: 72px;
+    padding-bottom: 62px;
 
     overflow: hidden;
 }
@@ -198,7 +196,7 @@ button {
     position: relative;
 
     width: 100%;
-    height: calc(100% - 75px);
+    height: calc(100% - 65px);
 
     min-height: 520px;
 
@@ -345,7 +343,6 @@ button {
 
 .hero-name span {
     font-size: clamp(4.8rem, 8.7vw, 8.8rem);
-
     font-weight: 300;
 
     line-height: 0.72;
@@ -375,14 +372,15 @@ button {
     transform: translateX(-50%);
 }
 
-.hero-number {
-    display: block;
 
-    font-size: 0.62rem;
+/* REMOVE HERO NUMBER */
+
+.hero-number {
+    display: none !important;
 }
 
 .hero-project-name {
-    margin-top: 6px;
+    margin-top: 0;
 
     font-size: 0.9rem;
     font-weight: 400;
@@ -431,20 +429,14 @@ button {
 
     margin: 0 auto 80px;
 
-    display: grid;
-
-    grid-template-columns:
-        120px minmax(0, 1fr);
-
-    gap: 40px;
-
-    align-items: start;
+    display: block;
 }
 
-.editorial-heading > span {
-    padding-top: 6px;
 
-    font-size: 0.75rem;
+/* REMOVE SECTION NUMBERS */
+
+.editorial-heading > span {
+    display: none !important;
 }
 
 .editorial-heading h2 {
@@ -493,20 +485,14 @@ button {
 }
 
 .projects-heading {
-    display: grid;
-
-    grid-template-columns:
-        80px minmax(0, 1fr);
-
-    gap: 30px;
-
-    align-items: start;
+    display: block;
 }
 
-.projects-number {
-    padding-top: 7px;
 
-    font-size: 0.72rem;
+/* REMOVE PROJECTS SECTION NUMBER */
+
+.projects-number {
+    display: none !important;
 }
 
 .projects-heading h2 {
@@ -544,7 +530,7 @@ button {
     gap: 28px;
 
     margin-top: 45px;
-    margin-left: 110px;
+    margin-left: 0;
 }
 
 .project-filter {
@@ -716,12 +702,7 @@ button {
 /* PROJECT INFO */
 
 .project-grid-info {
-    display: grid;
-
-    grid-template-columns:
-        40px minmax(0, 1fr);
-
-    gap: 18px;
+    display: block;
 
     width: 100%;
 
@@ -730,28 +711,21 @@ button {
     color: var(--black);
 }
 
+
+/* REMOVE PROJECT CARD NUMBERS */
+
 .project-grid-number {
-    padding-top: 4px;
-
-    color: var(--gray);
-
-    font-size: 0.65rem;
-
-    line-height: 1;
+    display: none !important;
 }
 
 .project-grid-copy {
     min-width: 0;
 }
 
-
-/* PROJECT TITLES */
-
 .project-grid-copy h3 {
     margin: 0;
 
     font-size: clamp(1.4rem, 1.8vw, 2.2rem);
-
     font-weight: 400;
 
     line-height: 1;
@@ -820,20 +794,14 @@ button {
 }
 
 .about-block-title {
-    display: flex;
-    align-items: flex-start;
-
-    gap: 25px;
+    display: block;
 }
 
-.about-block-title span {
-    flex: 0 0 auto;
 
-    padding-top: 6px;
+/* REMOVE ABOUT NUMBERS */
 
-    color: var(--gray);
-
-    font-size: 0.68rem;
+.about-block-title > span {
+    display: none !important;
 }
 
 .about-block-title h3 {
@@ -945,20 +913,14 @@ button {
 }
 
 .service-group-title {
-    display: flex;
-    align-items: flex-start;
-
-    gap: 25px;
+    display: block;
 }
 
-.service-group-title span {
-    flex: 0 0 auto;
 
-    padding-top: 6px;
+/* REMOVE SERVICE NUMBERS */
 
-    color: #888;
-
-    font-size: 0.68rem;
+.service-group-title > span {
+    display: none !important;
 }
 
 .service-group-title h3 {
@@ -1040,10 +1002,18 @@ button {
         1px solid rgba(255, 255, 255, 0.35);
 }
 
-.service-approach-number {
-    color: #888;
 
-    font-size: 0.68rem;
+/* REMOVE APPROACH NUMBER */
+
+.service-approach-number {
+    display: none !important;
+}
+
+
+/* MOVE APPROACH CONTENT TO RIGHT COLUMN */
+
+.service-approach > div {
+    grid-column: 2;
 }
 
 .service-approach h3 {
@@ -1085,15 +1055,18 @@ button {
     display: grid;
 
     grid-template-columns:
-        100px 1fr 0.6fr;
+        1fr 0.6fr;
 
-    gap: 50px;
+    gap: 80px;
 
     align-items: start;
 }
 
+
+/* REMOVE CONTACT NUMBER */
+
 .contact-number {
-    font-size: 0.75rem;
+    display: none !important;
 }
 
 .contact-main > p {
@@ -1326,9 +1299,6 @@ button {
     transform: translateY(0);
 }
 
-
-/* MAIN GALLERY IMAGE */
-
 .gallery-left {
     background: var(--black);
 
@@ -1354,9 +1324,6 @@ button {
     opacity: 1;
 }
 
-
-/* GALLERY RIGHT */
-
 .gallery-right {
     padding: 50px;
 
@@ -1376,7 +1343,6 @@ button {
     margin: 20px 0;
 
     font-size: clamp(2.5rem, 4vw, 4.5rem);
-
     font-weight: 300;
 
     line-height: 0.9;
@@ -1423,9 +1389,6 @@ button {
 
     object-fit: cover;
 }
-
-
-/* CLOSE */
 
 .gallery-close {
     position: absolute;
@@ -1480,10 +1443,6 @@ button {
     pointer-events: auto;
 }
 
-
-/* LIGHTWEIGHT OVERLAY
-   NO BACKDROP BLUR */
-
 .shop-modal-overlay {
     position: absolute;
 
@@ -1494,9 +1453,6 @@ button {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
-
-
-/* SHOP BOX */
 
 .shop-modal-box {
     position: relative;
@@ -1527,9 +1483,6 @@ button {
     transform: translateY(0);
 }
 
-
-/* CLOSE */
-
 .shop-modal-close {
     position: absolute;
 
@@ -1559,9 +1512,6 @@ button {
     opacity: 0.5;
 }
 
-
-/* LABEL */
-
 .shop-modal-label {
     display: block;
 
@@ -1573,14 +1523,10 @@ button {
     letter-spacing: 0.18em;
 }
 
-
-/* TITLE */
-
 .shop-modal-box h2 {
     margin: 0;
 
     font-size: clamp(3rem, 6vw, 5rem);
-
     font-weight: 300;
 
     line-height: 0.88;
@@ -1589,9 +1535,6 @@ button {
 
     text-transform: uppercase;
 }
-
-
-/* DESCRIPTION */
 
 .shop-modal-box > p {
     max-width: 390px;
@@ -1605,9 +1548,6 @@ button {
 
     line-height: 1.6;
 }
-
-
-/* STAY TUNED */
 
 .shop-modal-small {
     display: block;
@@ -1879,7 +1819,6 @@ button {
 
     .projects-grid {
         column-gap: 14px;
-
         row-gap: 65px;
     }
 
@@ -1921,6 +1860,10 @@ button {
         gap: 45px;
     }
 
+    .service-approach > div {
+        grid-column: 2;
+    }
+
     .service-group-title h3,
     .service-approach h3 {
         font-size: 1.4rem;
@@ -1931,11 +1874,9 @@ button {
 
     .contact-section {
         grid-template-columns:
-            60px 1fr;
-    }
+            1fr 0.75fr;
 
-    .contact-details {
-        grid-column: 2;
+        gap: 50px;
     }
 }
 
@@ -2019,11 +1960,11 @@ button {
 
         min-height: 590px;
 
-        padding-bottom: 65px;
+        padding-bottom: 55px;
     }
 
     .hero-stage {
-        height: calc(100% - 70px);
+        height: calc(100% - 60px);
     }
 
     .hero-card {
@@ -2080,10 +2021,6 @@ button {
 
     .editorial-heading {
         width: 90%;
-
-        grid-template-columns: 1fr;
-
-        gap: 25px;
     }
 
     .editorial-heading h2,
@@ -2105,16 +2042,6 @@ button {
         margin-bottom: 45px;
 
         padding-bottom: 25px;
-    }
-
-    .projects-heading {
-        grid-template-columns: 1fr;
-
-        gap: 20px;
-    }
-
-    .projects-number {
-        padding-top: 0;
     }
 
     .projects-heading p {
@@ -2146,11 +2073,6 @@ button {
     }
 
     .project-grid-info {
-        grid-template-columns:
-            34px minmax(0, 1fr);
-
-        gap: 12px;
-
         padding-top: 14px;
     }
 
@@ -2184,10 +2106,6 @@ button {
         gap: 35px;
 
         padding: 45px 0 60px;
-    }
-
-    .about-block-title {
-        gap: 15px;
     }
 
     .about-block-title h3 {
@@ -2240,10 +2158,6 @@ button {
         padding: 45px 0 60px;
     }
 
-    .service-group-title {
-        gap: 15px;
-    }
-
     .service-group-title h3 {
         font-size: 1.4rem;
     }
@@ -2272,6 +2186,10 @@ button {
         padding-top: 50px;
     }
 
+    .service-approach > div {
+        grid-column: 1;
+    }
+
     .service-approach h3 {
         font-size: 1.4rem;
     }
@@ -2294,8 +2212,6 @@ button {
     }
 
     .contact-details {
-        grid-column: auto;
-
         padding-top: 30px;
     }
 
