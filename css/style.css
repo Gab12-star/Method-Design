@@ -2347,3 +2347,15 @@ button {
         transition: none;
     }
 }
+
+/* ==================================================
+   INTRO - REMOVE LINE
+================================================== */
+
+.intro-line {
+    display: none !important;
+}
+
+.intro-content {
+    gap: 8px;
+}
