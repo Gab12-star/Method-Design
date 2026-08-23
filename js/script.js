@@ -1,6 +1,6 @@
-// ==============================
+// ==================================================
 // PAGE START
-// ==============================
+// ==================================================
 
 if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -9,9 +9,9 @@ if ("scrollRestoration" in history) {
 window.scrollTo(0, 0);
 
 
-// ==============================
+// ==================================================
 // ELEMENTS
-// ==============================
+// ==================================================
 
 const siteIntro = document.getElementById("siteIntro");
 
@@ -20,65 +20,146 @@ const siteMenu = document.querySelector(".site-menu");
 
 const hero = document.querySelector(".hero");
 const heroStage = document.querySelector(".hero-stage");
-const heroCards = [...document.querySelectorAll(".hero-card")];
-const heroDots = [...document.querySelectorAll(".hero-dots button")];
+
+const heroCards = [
+    ...document.querySelectorAll(".hero-card")
+];
+
+const heroDots = [
+    ...document.querySelectorAll(".hero-dots button")
+];
+
 const heroCounter = document.querySelector(".hero-number");
 const heroProjectName = document.querySelector(".hero-project-name");
 
+const projectFilterButtons = [
+    ...document.querySelectorAll(".project-filter")
+];
+
+const projectGridItems = [
+    ...document.querySelectorAll(".project-grid-item")
+];
+
+
+// ==================================================
+// PROJECT GALLERY ELEMENTS
+// ==================================================
+
 const galleryModal = document.getElementById("galleryModal");
-const galleryMainImage = document.getElementById("galleryMainImage");
-const galleryCategory = document.getElementById("galleryCategory");
-const galleryTitle = document.getElementById("galleryTitle");
-const galleryThumbs = document.getElementById("galleryThumbs");
-const galleryCloseButton = document.querySelector(".gallery-close");
-const galleryOverlay = document.querySelector(".gallery-overlay");
+
+const galleryMainImage = document.getElementById(
+    "galleryMainImage"
+);
+
+const galleryCategory = document.getElementById(
+    "galleryCategory"
+);
+
+const galleryTitle = document.getElementById(
+    "galleryTitle"
+);
+
+const galleryThumbs = document.getElementById(
+    "galleryThumbs"
+);
+
+const galleryCloseButton = document.querySelector(
+    ".gallery-close"
+);
+
+const galleryOverlay = document.querySelector(
+    ".gallery-overlay"
+);
 
 
-// ==============================
+// ==================================================
+// SHOP ELEMENTS
+// ==================================================
+
+const shopButton = document.getElementById("shopButton");
+
+const shopModal = document.getElementById("shopModal");
+
+const shopClose = document.getElementById("shopClose");
+
+const shopOverlay = document.querySelector(
+    ".shop-modal-overlay"
+);
+
+
+// ==================================================
 // WEBSITE INTRO
-// ==============================
+// ==================================================
 
 if (siteIntro) {
+
     document.body.classList.add("intro-open");
 
-    setTimeout(() => {
-        siteIntro.classList.add("reveal-site");
-    }, 1500);
 
     setTimeout(() => {
+
+        siteIntro.classList.add("reveal-site");
+
+    }, 1500);
+
+
+    setTimeout(() => {
+
         siteIntro.classList.add("hide");
+
         document.body.classList.remove("intro-open");
+
     }, 2250);
+
 }
 
 
-// ==============================
+// ==================================================
 // MOBILE MENU
-// ==============================
+// ==================================================
 
 if (mobileMenuButton && siteMenu) {
 
-    mobileMenuButton.addEventListener("click", () => {
-        siteMenu.classList.toggle("active");
-        mobileMenuButton.classList.toggle("active");
-    });
+    mobileMenuButton.addEventListener(
+        "click",
+        () => {
 
-    siteMenu.querySelectorAll("a").forEach(link => {
+            siteMenu.classList.toggle("active");
 
-        link.addEventListener("click", () => {
-            siteMenu.classList.remove("active");
-            mobileMenuButton.classList.remove("active");
+            mobileMenuButton.classList.toggle("active");
+
+        }
+    );
+
+
+    siteMenu
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    siteMenu.classList.remove("active");
+
+                    mobileMenuButton.classList.remove("active");
+
+                }
+            );
+
         });
 
-    });
 }
 
 
-// ==============================
+// ==================================================
 // GENERAL SCROLL REVEAL
-// ==============================
+// ==================================================
 
-const revealElements = document.querySelectorAll(".reveal");
+const revealElements = document.querySelectorAll(
+    ".reveal"
+);
+
 
 if ("IntersectionObserver" in window) {
 
@@ -87,10 +168,14 @@ if ("IntersectionObserver" in window) {
 
             entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                    observer.unobserve(entry.target);
+                if (!entry.isIntersecting) {
+                    return;
                 }
+
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
 
             });
 
@@ -101,67 +186,98 @@ if ("IntersectionObserver" in window) {
         }
     );
 
+
     revealElements.forEach(element => {
+
         revealObserver.observe(element);
+
     });
 
 } else {
 
     revealElements.forEach(element => {
+
         element.classList.add("show");
+
     });
 
 }
 
 
-// ==============================
-// PROJECT REVEAL
-// ==============================
+// ==================================================
+// PROJECT FILTERS
+// ==================================================
 
-const projectItems = document.querySelectorAll(".project-item");
+function filterProjects(selectedFilter) {
 
-if ("IntersectionObserver" in window) {
+    projectGridItems.forEach(project => {
 
-    const projectObserver = new IntersectionObserver(
-        (entries, observer) => {
+        const category =
+            project.dataset.category || "";
 
-            entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("project-visible");
-                    observer.unobserve(entry.target);
+        const shouldShow =
+            selectedFilter === "all" ||
+            selectedFilter === category;
+
+
+        project.classList.toggle(
+            "project-hidden",
+            !shouldShow
+        );
+
+    });
+
+}
+
+
+projectFilterButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const selectedFilter =
+                button.dataset.filter || "all";
+
+
+            projectFilterButtons.forEach(
+                filterButton => {
+
+                    filterButton.classList.remove(
+                        "active"
+                    );
+
                 }
+            );
 
-            });
 
-        },
-        {
-            threshold: 0.14,
-            rootMargin: "0px 0px -40px 0px"
+            button.classList.add("active");
+
+
+            filterProjects(selectedFilter);
+
         }
     );
 
-    projectItems.forEach(project => {
-        projectObserver.observe(project);
-    });
-
-} else {
-
-    projectItems.forEach(project => {
-        project.classList.add("project-visible");
-    });
-
-}
+});
 
 
-// ==============================
+// ==================================================
 // PROJECT DATA
-// ==============================
+// ==================================================
 
 const projects = {
 
+
+    // ==================================================
+    // 01 REAL COMMERCIAL TACLOBAN
+    // ==================================================
+
     "real-commercial-tacloban": {
+
         title: "REAL COMMERCIAL TACLOBAN",
+
         category: "3-STOREY RESIDENTIAL",
 
         images: [
@@ -176,25 +292,39 @@ const projects = {
             "images/projects/3.9.png",
             "images/projects/3.10.png"
         ]
+
     },
 
 
-    "the-rise-makati": {
-        title: "THE RISE MAKATI",
-        category: "28SQM. ONE BEDROOM CONDO UNIT",
+    // ==================================================
+    // 02 SHANG RESIDENCES
+    // ==================================================
+
+    "shang-residences": {
+
+        title: "SHANG RESIDENCES, WACK WACK",
+
+        category: "168SQM. 3-BEDROOM CONDO UNIT",
 
         images: [
-            "images/projects/5.1.png",
-            "images/projects/5.2.png",
-            "images/projects/5.3.png",
-            "images/projects/5.4.png",
-            "images/projects/5.5.png"
+            "images/projects/4.1.png",
+            "images/projects/4.2.png",
+            "images/projects/4.3.png",
+            "images/projects/4.4.png",
+            "images/projects/4.5.png"
         ]
+
     },
 
 
+    // ==================================================
+    // 03 PARKRIDGE ESTATE
+    // ==================================================
+
     "parkridge-estate": {
+
         title: "PARKRIDGE ESTATE",
+
         category: "3-STOREY RESIDENTIAL",
 
         images: [
@@ -222,25 +352,18 @@ const projects = {
             "images/projects/2.22.png",
             "images/projects/2.23.png"
         ]
+
     },
 
 
-    "shang-residences": {
-        title: "SHANG RESIDENCES, WACK WACK",
-        category: "168SQM. 3-BEDROOM CONDO UNIT",
-
-        images: [
-            "images/projects/4.1.png",
-            "images/projects/4.2.png",
-            "images/projects/4.3.png",
-            "images/projects/4.4.png",
-            "images/projects/4.5.png"
-        ]
-    },
-
+    // ==================================================
+    // 04 FORBESWOOD BGC
+    // ==================================================
 
     "forbeswood-bgc": {
+
         title: "FORBESWOOD BGC",
+
         category: "68SQM. 2-BEDROOM CONDO UNIT",
 
         images: [
@@ -252,14 +375,103 @@ const projects = {
             "images/projects/1.5.png",
             "images/projects/1.6.png"
         ]
+
+    },
+
+
+    // ==================================================
+    // 05 CENTRAL PARKWEST BGC - 1 BEDROOM
+    // ==================================================
+
+    "central-parkwest-1br": {
+
+        title: "CENTRAL PARKWEST BGC",
+
+        category: "43SQM. 1 BEDROOM CONDO UNIT",
+
+        images: [
+            "images/projects/6.1.png",
+            "images/projects/6.2.png",
+            "images/projects/6.3.png",
+            "images/projects/6.4.png",
+            "images/projects/6.5.png",
+            "images/projects/6.6.png"
+        ]
+
+    },
+
+
+    // ==================================================
+    // 06 CENTRAL PARKWEST BGC - 2 BEDROOM
+    // ==================================================
+
+    "central-parkwest-2br": {
+
+        title: "CENTRAL PARKWEST BGC",
+
+        category: "43SQM. 2 BEDROOM CONDO UNIT",
+
+        images: [
+            "images/projects/7.1.png",
+            "images/projects/7.2.png",
+            "images/projects/7.3.png",
+            "images/projects/7.4.png",
+            "images/projects/7.5.png",
+            "images/projects/7.6.png",
+            "images/projects/7.7.png"
+        ]
+
+    },
+
+
+    // ==================================================
+    // 07 ONE ARCHERS PLACE TAFT
+    // ==================================================
+
+    "one-archers-place-taft": {
+
+        title: "ONE ARCHERS PLACE TAFT",
+
+        category: "30SQM. ONE BEDROOM CONDO UNIT",
+
+        images: [
+            "images/projects/8.1.png",
+            "images/projects/8.2.png",
+            "images/projects/8.3.png",
+            "images/projects/8.4.png",
+            "images/projects/8.5.png",
+            "images/projects/8.6.png"
+        ]
+
+    },
+
+
+    // ==================================================
+    // 08 THE RISE MAKATI
+    // ==================================================
+
+    "the-rise-makati": {
+
+        title: "THE RISE MAKATI",
+
+        category: "28SQM. ONE BEDROOM CONDO UNIT",
+
+        images: [
+            "images/projects/5.1.png",
+            "images/projects/5.2.png",
+            "images/projects/5.3.png",
+            "images/projects/5.4.png",
+            "images/projects/5.5.png"
+        ]
+
     }
 
 };
 
 
-// ==============================
+// ==================================================
 // HERO DATA
-// ==============================
+// ==================================================
 
 const heroProjects = [
     "REAL COMMERCIAL TACLOBAN",
@@ -269,19 +481,23 @@ const heroProjects = [
     "FORBESWOOD BGC"
 ];
 
+
 let heroIndex = 0;
+
 let heroAnimating = false;
 
 let wheelAccumulator = 0;
+
 let wheelTimer = null;
 
 let touchStartX = 0;
+
 let touchStartY = 0;
 
 
-// ==============================
-// UPDATE HERO LAYERS
-// ==============================
+// ==================================================
+// UPDATE HERO
+// ==================================================
 
 function updateHero() {
 
@@ -289,79 +505,86 @@ function updateHero() {
         return;
     }
 
+
     const total = heroCards.length;
 
 
-    heroCards.forEach((card, index) => {
+    heroCards.forEach(
+        (card, index) => {
 
-        card.classList.remove(
-            "active",
-            "prev",
-            "next",
-            "far-prev",
-            "far-next",
-            "hidden-card"
-        );
-
-
-        let difference = index - heroIndex;
+            card.classList.remove(
+                "active",
+                "prev",
+                "next",
+                "far-prev",
+                "far-next",
+                "hidden-card"
+            );
 
 
-        // Circular positioning.
-        // This keeps all five pictures layered
-        // behind the active picture.
+            let difference =
+                index - heroIndex;
 
-        if (difference > total / 2) {
-            difference -= total;
+
+            if (difference > total / 2) {
+
+                difference -= total;
+
+            }
+
+
+            if (difference < -total / 2) {
+
+                difference += total;
+
+            }
+
+
+            if (difference === 0) {
+
+                card.classList.add("active");
+
+            } else if (difference === -1) {
+
+                card.classList.add("prev");
+
+            } else if (difference === 1) {
+
+                card.classList.add("next");
+
+            } else if (difference === -2) {
+
+                card.classList.add("far-prev");
+
+            } else if (difference === 2) {
+
+                card.classList.add("far-next");
+
+            } else {
+
+                card.classList.add("hidden-card");
+
+            }
+
         }
-
-        if (difference < -total / 2) {
-            difference += total;
-        }
+    );
 
 
-        if (difference === 0) {
+    // HERO DOTS
 
-            card.classList.add("active");
+    heroDots.forEach(
+        (dot, index) => {
 
-        } else if (difference === -1) {
-
-            card.classList.add("prev");
-
-        } else if (difference === 1) {
-
-            card.classList.add("next");
-
-        } else if (difference === -2) {
-
-            card.classList.add("far-prev");
-
-        } else if (difference === 2) {
-
-            card.classList.add("far-next");
-
-        } else {
-
-            card.classList.add("hidden-card");
+            dot.classList.toggle(
+                "active",
+                index === heroIndex
+            );
 
         }
-
-    });
-
-
-    // DOTS
-
-    heroDots.forEach((dot, index) => {
-
-        dot.classList.toggle(
-            "active",
-            index === heroIndex
-        );
-
-    });
+    );
 
 
-    // COUNTER
+    // HERO COUNTER
 
     if (heroCounter) {
 
@@ -371,7 +594,7 @@ function updateHero() {
     }
 
 
-    // PROJECT NAME
+    // HERO PROJECT NAME
 
     if (heroProjectName) {
 
@@ -383,9 +606,9 @@ function updateHero() {
 }
 
 
-// ==============================
+// ==================================================
 // CHANGE HERO
-// ==============================
+// ==================================================
 
 function changeHero(direction) {
 
@@ -402,28 +625,38 @@ function changeHero(direction) {
         nextIndex < 0 ||
         nextIndex >= heroCards.length
     ) {
+
         return false;
+
     }
 
 
     heroAnimating = true;
+
     heroIndex = nextIndex;
+
 
     updateHero();
 
 
-    setTimeout(() => {
-        heroAnimating = false;
-    }, 850);
+    setTimeout(
+        () => {
+
+            heroAnimating = false;
+
+        },
+        850
+    );
 
 
     return true;
+
 }
 
 
-// ==============================
-// CHECK HERO VISIBILITY
-// ==============================
+// ==================================================
+// HERO VISIBILITY
+// ==================================================
 
 function heroIsVisible() {
 
@@ -437,16 +670,18 @@ function heroIsVisible() {
 
 
     return (
-        rect.top < window.innerHeight * 0.58 &&
-        rect.bottom > window.innerHeight * 0.42
+        rect.top <
+            window.innerHeight * 0.58 &&
+        rect.bottom >
+            window.innerHeight * 0.42
     );
 
 }
 
 
-// ==============================
-// MOUSE WHEEL / TRACKPAD
-// ==============================
+// ==================================================
+// HERO WHEEL / TRACKPAD
+// ==================================================
 
 window.addEventListener(
     "wheel",
@@ -456,48 +691,79 @@ window.addEventListener(
             return;
         }
 
+
         if (!heroIsVisible()) {
             return;
         }
 
+
+        // DO NOT CONTROL HERO
+        // WHILE PROJECT GALLERY IS OPEN
+
         if (
-            galleryModal?.classList.contains("active")
+            galleryModal?.classList.contains(
+                "active"
+            )
         ) {
+
             return;
+
         }
 
 
-        // Disable hero scrolling
-        // while intro is still visible.
+        // DO NOT CONTROL HERO
+        // WHILE SHOP MODAL IS OPEN
+
+        if (
+            shopModal?.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        // DO NOT CONTROL HERO
+        // WHILE INTRO IS OPEN
 
         if (
             siteIntro &&
-            !siteIntro.classList.contains("hide")
+            !siteIntro.classList.contains(
+                "hide"
+            )
         ) {
+
             return;
+
         }
 
 
         const direction =
-            event.deltaY > 0 ? 1 : -1;
+            event.deltaY > 0
+                ? 1
+                : -1;
 
 
-        // LAST HERO IMAGE
-        // Allow normal page scroll down.
+        // LAST HERO:
+        // ALLOW NORMAL PAGE SCROLL DOWN
 
         if (
             direction === 1 &&
-            heroIndex === heroCards.length - 1
+            heroIndex ===
+                heroCards.length - 1
         ) {
 
             wheelAccumulator = 0;
+
             return;
 
         }
 
 
-        // FIRST HERO IMAGE
-        // Allow normal page scroll upward.
+        // FIRST HERO:
+        // ALLOW NORMAL PAGE SCROLL UP
 
         if (
             direction === -1 &&
@@ -505,6 +771,7 @@ window.addEventListener(
         ) {
 
             wheelAccumulator = 0;
+
             return;
 
         }
@@ -518,35 +785,47 @@ window.addEventListener(
         }
 
 
-        wheelAccumulator += event.deltaY;
+        wheelAccumulator +=
+            event.deltaY;
 
 
         clearTimeout(wheelTimer);
 
 
-        wheelTimer = setTimeout(() => {
-            wheelAccumulator = 0;
-        }, 140);
+        wheelTimer = setTimeout(
+            () => {
+
+                wheelAccumulator = 0;
+
+            },
+            140
+        );
 
 
-        // Prevent tiny accidental
-        // trackpad movements.
+        // IGNORE SMALL TRACKPAD MOVEMENTS
 
         if (
-            Math.abs(wheelAccumulator) < 45
+            Math.abs(wheelAccumulator) <
+            45
         ) {
+
             return;
+
         }
 
 
         const changed =
             changeHero(
-                wheelAccumulator > 0 ? 1 : -1
+                wheelAccumulator > 0
+                    ? 1
+                    : -1
             );
 
 
         if (changed) {
+
             wheelAccumulator = 0;
+
         }
 
     },
@@ -556,9 +835,9 @@ window.addEventListener(
 );
 
 
-// ==============================
-// MOBILE / TOUCH SWIPE
-// ==============================
+// ==================================================
+// HERO TOUCH / SWIPE
+// ==================================================
 
 if (heroStage) {
 
@@ -592,15 +871,39 @@ if (heroStage) {
             }
 
 
+            if (
+                shopModal?.classList.contains(
+                    "active"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                galleryModal?.classList.contains(
+                    "active"
+                )
+            ) {
+
+                return;
+
+            }
+
+
             const touch =
                 event.changedTouches[0];
 
 
             const deltaX =
-                touchStartX - touch.clientX;
+                touchStartX -
+                touch.clientX;
 
             const deltaY =
-                touchStartY - touch.clientY;
+                touchStartY -
+                touch.clientY;
 
 
             const absoluteX =
@@ -610,13 +913,13 @@ if (heroStage) {
                 Math.abs(deltaY);
 
 
-            // Ignore very small movements.
-
             if (
                 absoluteX < 45 &&
                 absoluteY < 45
             ) {
+
                 return;
+
             }
 
 
@@ -626,12 +929,16 @@ if (heroStage) {
             if (absoluteY >= absoluteX) {
 
                 direction =
-                    deltaY > 0 ? 1 : -1;
+                    deltaY > 0
+                        ? 1
+                        : -1;
 
             } else {
 
                 direction =
-                    deltaX > 0 ? 1 : -1;
+                    deltaX > 0
+                        ? 1
+                        : -1;
 
             }
 
@@ -647,54 +954,68 @@ if (heroStage) {
 }
 
 
-// ==============================
-// HERO DOTS
-// ==============================
+// ==================================================
+// HERO DOT BUTTONS
+// ==================================================
 
-heroDots.forEach((dot, index) => {
+heroDots.forEach(
+    (dot, index) => {
 
-    dot.addEventListener("click", () => {
+        dot.addEventListener(
+            "click",
+            () => {
 
-        if (heroAnimating) {
-            return;
-        }
-
-
-        if (index === heroIndex) {
-            return;
-        }
+                if (heroAnimating) {
+                    return;
+                }
 
 
-        heroAnimating = true;
-        heroIndex = index;
+                if (index === heroIndex) {
+                    return;
+                }
 
-        updateHero();
+
+                heroAnimating = true;
+
+                heroIndex = index;
 
 
-        setTimeout(() => {
-            heroAnimating = false;
-        }, 850);
+                updateHero();
 
-    });
 
-});
+                setTimeout(
+                    () => {
+
+                        heroAnimating = false;
+
+                    },
+                    850
+                );
+
+            }
+        );
+
+    }
+);
 
 
 // INITIAL HERO
+
 updateHero();
 
 
-// ==============================
+// ==================================================
 // GALLERY STATE
-// ==============================
+// ==================================================
 
 let activeProjectKey = null;
+
 let activeImageIndex = 0;
 
 
-// ==============================
+// ==================================================
 // GET ACTIVE PROJECT IMAGES
-// ==============================
+// ==================================================
 
 function getActiveImages() {
 
@@ -711,16 +1032,13 @@ function getActiveImages() {
 }
 
 
-// ==============================
-// SET GALLERY MAIN IMAGE
-// ==============================
+// ==================================================
+// SET MAIN GALLERY IMAGE
+// ==================================================
 
 function setMainImage(src) {
 
-    if (
-        !galleryMainImage ||
-        !src
-    ) {
+    if (!galleryMainImage || !src) {
         return;
     }
 
@@ -742,7 +1060,7 @@ function setMainImage(src) {
     galleryMainImage.onerror = () => {
 
         console.warn(
-            "Could not load:",
+            "Could not load project image:",
             src
         );
 
@@ -759,9 +1077,9 @@ function setMainImage(src) {
 }
 
 
-// ==============================
-// ACTIVE GALLERY THUMBNAIL
-// ==============================
+// ==================================================
+// SET ACTIVE THUMBNAIL
+// ==================================================
 
 function setActiveThumb(index) {
 
@@ -776,14 +1094,19 @@ function setActiveThumb(index) {
         );
 
 
-    thumbnails.forEach((thumbnail, i) => {
+    thumbnails.forEach(
+        (
+            thumbnail,
+            thumbnailIndex
+        ) => {
 
-        thumbnail.classList.toggle(
-            "active",
-            i === index
-        );
+            thumbnail.classList.toggle(
+                "active",
+                thumbnailIndex === index
+            );
 
-    });
+        }
+    );
 
 
     thumbnails[index]?.scrollIntoView({
@@ -795,9 +1118,9 @@ function setActiveThumb(index) {
 }
 
 
-// ==============================
+// ==================================================
 // OPEN GALLERY
-// ==============================
+// ==================================================
 
 function openGallery() {
 
@@ -823,9 +1146,9 @@ function openGallery() {
 }
 
 
-// ==============================
+// ==================================================
 // CLOSE GALLERY
-// ==============================
+// ==================================================
 
 function closeGallery() {
 
@@ -845,15 +1168,19 @@ function closeGallery() {
     );
 
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 
 
     activeProjectKey = null;
+
     activeImageIndex = 0;
 
 
     if (galleryThumbs) {
+
         galleryThumbs.innerHTML = "";
+
     }
 
 
@@ -870,9 +1197,9 @@ function closeGallery() {
 }
 
 
-// ==============================
+// ==================================================
 // RENDER PROJECT GALLERY
-// ==============================
+// ==================================================
 
 function renderGallery(projectKey) {
 
@@ -882,9 +1209,12 @@ function renderGallery(projectKey) {
 
     if (
         !project ||
-        !project.images?.length
+        !project.images ||
+        !project.images.length
     ) {
+
         return;
+
     }
 
 
@@ -895,7 +1225,8 @@ function renderGallery(projectKey) {
     activeProjectKey =
         projectKey;
 
-    activeImageIndex = 0;
+    activeImageIndex =
+        0;
 
 
     // CATEGORY
@@ -929,74 +1260,82 @@ function renderGallery(projectKey) {
             document.createDocumentFragment();
 
 
-        images.forEach((src, index) => {
+        images.forEach(
+            (src, index) => {
 
-            const thumbnail =
-                document.createElement(
-                    "button"
-                );
-
-
-            const image =
-                document.createElement(
-                    "img"
-                );
-
-
-            thumbnail.type =
-                "button";
-
-
-            thumbnail.className =
-                "gallery-thumb";
-
-
-            thumbnail.setAttribute(
-                "aria-label",
-                `${project.title} image ${index + 1}`
-            );
-
-
-            image.src = src;
-
-            image.alt =
-                `${project.title} ${index + 1}`;
-
-            image.loading =
-                "lazy";
-
-
-            thumbnail.appendChild(
-                image
-            );
-
-
-            thumbnail.addEventListener(
-                "click",
-                () => {
-
-                    activeImageIndex =
-                        index;
-
-
-                    setMainImage(
-                        images[index]
+                const thumbnail =
+                    document.createElement(
+                        "button"
                     );
 
 
-                    setActiveThumb(
-                        index
+                thumbnail.type =
+                    "button";
+
+
+                thumbnail.className =
+                    "gallery-thumb";
+
+
+                thumbnail.setAttribute(
+                    "aria-label",
+                    `${project.title} image ${index + 1}`
+                );
+
+
+                const image =
+                    document.createElement(
+                        "img"
                     );
 
-                }
-            );
+
+                image.src =
+                    src;
 
 
-            fragment.appendChild(
-                thumbnail
-            );
+                image.alt =
+                    `${project.title} ${index + 1}`;
 
-        });
+
+                image.loading =
+                    "lazy";
+
+
+                thumbnail.appendChild(
+                    image
+                );
+
+
+                thumbnail.addEventListener(
+                    "click",
+                    event => {
+
+                        event.stopPropagation();
+
+
+                        activeImageIndex =
+                            index;
+
+
+                        setMainImage(
+                            images[index]
+                        );
+
+
+                        setActiveThumb(
+                            index
+                        );
+
+                    }
+                );
+
+
+                fragment.appendChild(
+                    thumbnail
+                );
+
+            }
+        );
 
 
         galleryThumbs.appendChild(
@@ -1019,16 +1358,19 @@ function renderGallery(projectKey) {
     );
 
 
-    setActiveThumb(0);
+    setActiveThumb(
+        0
+    );
+
 
     openGallery();
 
 }
 
 
-// ==============================
-// SHIFT GALLERY IMAGE
-// ==============================
+// ==================================================
+// NEXT / PREVIOUS GALLERY IMAGE
+// ==================================================
 
 function shiftGalleryImage(direction) {
 
@@ -1061,9 +1403,9 @@ function shiftGalleryImage(direction) {
 }
 
 
-// ==============================
+// ==================================================
 // PROJECT CARD CLICKS
-// ==============================
+// ==================================================
 
 document
     .querySelectorAll(".project-card")
@@ -1073,17 +1415,17 @@ document
             "click",
             () => {
 
-                const key =
+                const projectKey =
                     card.dataset.project;
 
 
                 if (
-                    key &&
-                    projects[key]
+                    projectKey &&
+                    projects[projectKey]
                 ) {
 
                     renderGallery(
-                        key
+                        projectKey
                     );
 
                 }
@@ -1094,13 +1436,19 @@ document
     });
 
 
-// ==============================
+// ==================================================
 // GALLERY CLOSE CONTROLS
-// ==============================
+// ==================================================
 
 galleryCloseButton?.addEventListener(
     "click",
-    closeGallery
+    event => {
+
+        event.stopPropagation();
+
+        closeGallery();
+
+    }
 );
 
 
@@ -1110,15 +1458,139 @@ galleryOverlay?.addEventListener(
 );
 
 
-// ==============================
+// ==================================================
+// SHOP MODAL
+// ==================================================
+
+function openShopModal() {
+
+    if (!shopModal) {
+        return;
+    }
+
+
+    // CLOSE MOBILE MENU
+
+    siteMenu?.classList.remove(
+        "active"
+    );
+
+    mobileMenuButton?.classList.remove(
+        "active"
+    );
+
+
+    shopModal.classList.add(
+        "active"
+    );
+
+
+    shopModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeShopModal() {
+
+    if (!shopModal) {
+        return;
+    }
+
+
+    shopModal.classList.remove(
+        "active"
+    );
+
+
+    shopModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+// SHOP BUTTON
+
+shopButton?.addEventListener(
+    "click",
+    event => {
+
+        event.preventDefault();
+
+        openShopModal();
+
+    }
+);
+
+
+// SHOP CLOSE BUTTON
+
+shopClose?.addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
+
+        closeShopModal();
+
+    }
+);
+
+
+// CLICK DARK BACKGROUND TO CLOSE
+
+shopOverlay?.addEventListener(
+    "click",
+    closeShopModal
+);
+
+
+// ==================================================
 // KEYBOARD CONTROLS
-// ==============================
+// ==================================================
 
 document.addEventListener(
     "keydown",
     event => {
 
-        // GALLERY CONTROLS
+
+        // ==================================================
+        // SHOP MODAL
+        // ==================================================
+
+        if (
+            shopModal?.classList.contains(
+                "active"
+            )
+        ) {
+
+            if (event.key === "Escape") {
+
+                closeShopModal();
+
+            }
+
+
+            return;
+
+        }
+
+
+        // ==================================================
+        // PROJECT GALLERY
+        // ==================================================
 
         if (
             galleryModal?.classList.contains(
@@ -1127,25 +1599,44 @@ document.addEventListener(
         ) {
 
             if (event.key === "Escape") {
+
                 closeGallery();
+
+                return;
+
             }
 
 
             if (event.key === "ArrowRight") {
+
+                event.preventDefault();
+
                 shiftGalleryImage(1);
+
+                return;
+
             }
 
 
             if (event.key === "ArrowLeft") {
+
+                event.preventDefault();
+
                 shiftGalleryImage(-1);
+
+                return;
+
             }
 
 
             return;
+
         }
 
 
-        // HERO CONTROLS
+        // ==================================================
+        // HERO KEYBOARD
+        // ==================================================
 
         if (!heroIsVisible()) {
             return;
