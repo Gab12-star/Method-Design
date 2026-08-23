@@ -558,8 +558,7 @@ button {
     width: min(1100px, 90%);
     margin: auto;
 
-    border-top:
-        1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .service-row {
@@ -570,8 +569,7 @@ button {
 
     padding: 35px 0;
 
-    border-bottom:
-        1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .service-row > span {
@@ -639,6 +637,26 @@ button {
 .contact-details p {
     font-size: 1rem;
 }
+
+
+/* NON-CLICKABLE LOCATION */
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 1rem;
+    color: #111;
+}
+
+.contact-info i {
+    width: 16px;
+    text-align: center;
+}
+
+
+/* CLICKABLE CONTACT LINKS */
 
 .contact-details a {
     display: flex;
@@ -779,9 +797,7 @@ button {
 .gallery-right h2 {
     margin: 20px 0;
 
-    font-size:
-        clamp(2.5rem, 4vw, 4.5rem);
-
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
     line-height: 0.9;
 }
 
@@ -797,8 +813,7 @@ button {
     padding: 0;
     background: none;
 
-    border:
-        1px solid transparent;
+    border: 1px solid transparent;
 
     cursor: pointer;
     overflow: hidden;
@@ -1150,8 +1165,7 @@ button {
         width: 100%;
         padding: 25px 5%;
 
-        background:
-            rgba(244, 244, 239, 0.98);
+        background: rgba(244, 244, 239, 0.98);
 
         display: none;
         flex-direction: column;
